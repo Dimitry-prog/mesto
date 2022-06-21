@@ -1,4 +1,17 @@
 .page__header {
-  margin: 0 200px;
-  padding-top: 45px;
+  padding: 45px 200px 0;
+  position: relative;
+}
+
+.page__header::before {
+  content: '';
+  position: absolute;
+  border-bottom: 1px solid var(--header-border-color);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 880px;
+  margin: 0 auto;
+  opacity: var( --header-border-opacity);
 }
