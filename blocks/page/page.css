@@ -1,1 +1,34 @@
-.page {}
+:root {
+  --main-background-color: #000;
+  --main-text-color: #fff;
+  --max-width: 1280px;
+  --header-border-color: #545454;
+  --header-border-opacity: .7;
+  --popup-background-opacity: .5;
+  --popup-inputs-opacity: .2;
+  --popup-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  --button-add-opacity: .6;
+  --button-save-opacity: .8;
+  --font-weight-900: 900;
+  --font-weight-500: 500;
+  --font-weight-400: 400;
+  --font-size-main: 18px;
+  --line-height-main: 22px;
+  --font-size-cards: 24px;
+  --line-height-cards: 29px;
+  --font-size-title: 42px;
+  --line-height-title: 48px;
+  --font-family-main: "Inter", "Arial", sans-serif;
+  --font-style-main: normal;
+}
+
+.page {
+  margin: 0 auto;
+  box-sizing: border-box;
+  max-width: var(--max-width);
+  background-color: var(--main-background-color);
+  color: var(--main-text-color);
+  font-family: var(--font-family-main);
+  font-style: var(--font-style-main);
+  font-weight: var(--font-weight-900);
+}
