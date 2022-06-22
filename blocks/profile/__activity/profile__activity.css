@@ -1,0 +1,6 @@
+.profile__activity {
+  margin: 0;
+  font-size: var(--font-size-main);
+  font-weight: var(--font-weight-400);
+  line-height: var(--line-height-main);
+}

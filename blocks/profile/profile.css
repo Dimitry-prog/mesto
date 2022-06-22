@@ -1,1 +1,6 @@
-.profile {}
+.profile {
+  display: grid;
+  grid-template-columns: 120px max-content 1fr min-content;
+  gap: 0 30px;
+  align-items: center;
+}

@@ -24,6 +24,7 @@
 
 .page {
   margin: 0 auto;
+  padding: 0 200px;
   box-sizing: border-box;
   max-width: var(--max-width);
   background-color: var(--main-background-color);

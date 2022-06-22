@@ -1,0 +1,9 @@
+.button {
+  background: transparent;
+  border: 1px solid var(--main-text-color);
+}
+
+.button:hover {
+  cursor: pointer;
+  opacity: var(--button-add-opacity);
+}
