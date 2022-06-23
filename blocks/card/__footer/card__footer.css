@@ -1,0 +1,6 @@
+.card__footer {
+  padding: 25px 15px 31px 21px;
+  background-color: var(--main-text-color);
+  display: flex;
+  justify-content: space-between;
+}

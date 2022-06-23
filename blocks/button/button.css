@@ -1,4 +1,5 @@
 .button {
+  padding: 0;
   background: transparent;
   border: 1px solid var(--main-text-color);
 }
