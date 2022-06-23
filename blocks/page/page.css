@@ -6,7 +6,8 @@
   --header-border-opacity: .7;
   --popup-background-opacity: .5;
   --popup-inputs-opacity: .2;
-  --popup-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  --popup-shadow: rgba(0, 0, 0, .5);
+  --input-border-opacity: rgba(0, 0, 0, .2);
   --button-add-opacity: .6;
   --button-save-opacity: .8;
   --font-weight-900: 900;

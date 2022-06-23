@@ -6,6 +6,7 @@
 @import url(../blocks/page/page.css);
 @import url(../blocks/page/__header/page__header.css);
 @import url(../blocks/page/__footer/page__footer.css);
+@import url(../blocks/page/_type/page_type_hidden.css);
 
 /**** MAIN ****/
 
@@ -55,3 +56,23 @@
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
+
+/**** POP-UP ****/
+
+@import url(../blocks/pop-up/pop-up.css);
+@import url(../blocks/pop-up/__overlay/pop-up__overlay.css);
+@import url(../blocks/pop-up/__form/pop-up__form.css);
+@import url(../blocks/pop-up/_type/pop-up_type_show.css);
+
+/**** FORM ****/
+
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__title/form__title.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__input/_type/form__input_type_name.css);
+@import url(../blocks/form/__input/_type/form__input_type_activity.css);
+@import url(../blocks/form/__input/_type/form__input_type_save.css);
+
+/**** INPUT ****/
+
+@import url(../blocks/input/input.css);

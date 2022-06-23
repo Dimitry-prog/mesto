@@ -1,0 +1,10 @@
+.form__input_type_save {
+  background-color: var(--main-background-color);
+  color: var(--main-text-color);
+  border-radius: 2px;
+}
+
+.form__input_type_save:hover {
+  cursor: pointer;
+  opacity: var(--button-save-opacity);
+}
