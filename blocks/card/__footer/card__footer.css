@@ -3,4 +3,5 @@
   background-color: var(--main-text-color);
   display: flex;
   justify-content: space-between;
+  border-radius: 0 0 10px 10px;
 }
