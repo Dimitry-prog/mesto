@@ -1,5 +1,5 @@
 .profile__add {
   width: 150px;
   height: 50px;
-  grid-column: 4;
+  justify-self: end;
 }
