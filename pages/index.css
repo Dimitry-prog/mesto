@@ -61,6 +61,7 @@
 
 @import url(../blocks/pop-up/pop-up.css);
 @import url(../blocks/pop-up/__overlay/pop-up__overlay.css);
+@import url(../blocks/pop-up/__close/pop-up__close.css);
 @import url(../blocks/pop-up/__form/pop-up__form.css);
 @import url(../blocks/pop-up/_type/pop-up_type_show.css);
 
