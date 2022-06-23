@@ -1,17 +1,17 @@
 # Проект: Место
 
-### Обзор
+### Технологии
 
-* Figma
-* Картинки
+* Javascript
+* full Responsive
+* Desktop first
+* Grid
+* Flex
+* Position
+* BEM
+* Nested Bem
 
-**Figma**
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+* [Ссылка на страницу](https://dimitry-prog.github.io/mesto/)
 
-**Картинки**
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
-
-Удачи!
