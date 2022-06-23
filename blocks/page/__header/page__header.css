@@ -15,3 +15,9 @@
   margin: 0 auto;
   opacity: var( --header-border-opacity);
 }
+
+@media screen and (max-width: 430px) {
+  .page__header {
+    padding-top: 30px;
+  }
+}

@@ -35,3 +35,21 @@
   line-height: var(--line-height-cards);
   font-weight: var(--font-weight-900);
 }
+
+@media screen and (max-width: 1063px) {
+  .page {
+    padding: 0 115px;
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .page {
+    padding: 0 75px;
+  }
+}
+
+@media screen and (max-width: 487px) {
+  .page {
+    padding: 0 20px;
+  }
+}
