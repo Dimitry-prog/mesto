@@ -3,3 +3,10 @@
   height: 24px;
   align-self: center;
 }
+
+@media screen and (max-width: 420px) {
+  .profile__edit {
+    width: 18px;
+    height: 18px;
+  }
+}

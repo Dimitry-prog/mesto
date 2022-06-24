@@ -9,6 +9,10 @@
 @import url(../blocks/page/__footer/page__footer.css);
 @import url(../blocks/page/_type/page_type_hidden.css);
 
+/**** LOGO ****/
+
+@import url(../blocks/logo/logo.css);
+
 /**** MAIN ****/
 
 @import url(../blocks/main/main.css);
