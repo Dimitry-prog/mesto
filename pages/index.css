@@ -66,6 +66,10 @@
 @import url(../blocks/pop-up/__form/pop-up__form.css);
 @import url(../blocks/pop-up/_type/pop-up_type_show.css);
 
+/**** INPUT ****/
+
+@import url(../blocks/input/input.css);
+
 /**** FORM ****/
 
 @import url(../blocks/form/form.css);
@@ -74,7 +78,3 @@
 @import url(../blocks/form/__input/_type/form__input_type_name.css);
 @import url(../blocks/form/__input/_type/form__input_type_activity.css);
 @import url(../blocks/form/__input/_type/form__input_type_save.css);
-
-/**** INPUT ****/
-
-@import url(../blocks/input/input.css);

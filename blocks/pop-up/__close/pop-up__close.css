@@ -1,7 +1,7 @@
 .pop-up__close {
   position: absolute;
-  right: -15px;
-  top: -30px;
+  right: -40px;
+  top: -40px;
 }
 
 .pop-up__close:hover {
