@@ -1,12 +1,18 @@
 @import url(../vendors/normalize.css);
+@import url(../vendors/variable.css );
 @import url(../vendors/fonts.css);
 
 /**** PAGE ****/
 
 @import url(../blocks/page/page.css);
 @import url(../blocks/page/__header/page__header.css);
+@import url(../blocks/page/__main/page__main.css);
 @import url(../blocks/page/__footer/page__footer.css);
 @import url(../blocks/page/_type/page_type_hidden.css);
+
+/**** LOGO ****/
+
+@import url(../blocks/logo/logo.css);
 
 /**** MAIN ****/
 
@@ -43,6 +49,8 @@
 /**** ELEMENTS  ****/
 
 @import url(../blocks/elements/elements.css);
+@import url(../blocks/elements/__list/elements__list.css);
+@import url(../blocks/elements/__item/elements__item.css);
 
 /**** CARD ****/
 
@@ -63,7 +71,11 @@
 @import url(../blocks/pop-up/__overlay/pop-up__overlay.css);
 @import url(../blocks/pop-up/__close/pop-up__close.css);
 @import url(../blocks/pop-up/__form/pop-up__form.css);
-@import url(../blocks/pop-up/_type/pop-up_type_show.css);
+@import url(../blocks/pop-up/_opened/pop-up_opened.css);
+
+/**** INPUT ****/
+
+@import url(../blocks/input/input.css);
 
 /**** FORM ****/
 
@@ -73,7 +85,3 @@
 @import url(../blocks/form/__input/_type/form__input_type_name.css);
 @import url(../blocks/form/__input/_type/form__input_type_activity.css);
 @import url(../blocks/form/__input/_type/form__input_type_save.css);
-
-/**** INPUT ****/
-
-@import url(../blocks/input/input.css);

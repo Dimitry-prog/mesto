@@ -18,70 +18,76 @@
       <img src="./images/profile__img.jpg" alt="Жак-Ив Кусто" class="profile__img">
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <button class="button profile__edit button_type_edit">
-          <img class="button__icon button__icon_type_edit" src="./images/edit-pen.svg" alt="редактировать">
+        <button class="button profile__edit button_type_edit" type="button">
         </button>
         <p class="profile__activity">Исследователь океана</p>
       </div>
-      <button class="button button_type_add profile__add">
-        <img class="button__icon button__icon_type_add" src="./images/addPost.svg" alt="добавить карточку">
+      <button class="button button_type_add profile__add" type="button">
       </button>
     </section>
     <section class="elements main__elements">
-      <div class="card">
-        <img src="./images/baraks.jpg" alt="бараки" class="card__img">
-        <div class="card__footer">
-          <h2 class="card__title">Barraks</h2>
-          <button class="button button_type_like card__like">
-            <img class="button__icon button__icon_type_like" src="./images/like.svg" alt="лайк">
-          </button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/germany.jpg" alt="германия" class="card__img">
-        <div class="card__footer">
-          <h2 class="card__title">Germany</h2>
-          <button class="button button_type_like card__like">
-            <img class="button__icon button__icon_type_like" src="./images/like.svg" alt="лайк">
-          </button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/paris.jpg" alt="париж" class="card__img">
-        <div class="card__footer">
-          <h2 class="card__title">Paris</h2>
-          <button class="button button_type_like card__like">
-            <img class="button__icon button__icon_type_like" src="./images/like.svg" alt="лайк">
-          </button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/photo.jpg" alt="просто фото" class="card__img">
-        <div class="card__footer">
-          <h2 class="card__title">Фото неизвестного места на планете</h2>
-          <button class="button button_type_like card__like">
-            <img class="button__icon button__icon_type_like" src="./images/like.svg" alt="лайк">
-          </button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/stockholm.jpg" alt="стокгольм" class="card__img">
-        <div class="card__footer">
-          <h2 class="card__title">Стокгольм</h2>
-          <button class="button button_type_like card__like">
-            <img class="button__icon button__icon_type_like" src="./images/like.svg" alt="лайк">
-          </button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/walls.jpg" alt="стены" class="card__img">
-        <div class="card__footer">
-          <h2 class="card__title">Стены</h2>
-          <button class="button button_type_like card__like">
-            <img class="button__icon button__icon_type_like" src="./images/like.svg" alt="лайк">
-          </button>
-        </div>
-      </div>
+      <ul class="elements__list">
+        <li class="elements__item">
+          <div class="card">
+            <img src="./images/baraks.jpg" alt="бараки" class="card__img">
+            <div class="card__footer">
+              <h2 class="card__title">Barraks</h2>
+              <button class="button button_type_like card__like" type="button">
+              </button>
+            </div>
+          </div>
+        </li>
+        <li class="elements__item">
+          <div class="card">
+            <img src="./images/germany.jpg" alt="германия" class="card__img">
+            <div class="card__footer">
+              <h2 class="card__title">Germany</h2>
+              <button class="button button_type_like card__like" type="button">
+              </button>
+            </div>
+          </div>
+        </li>
+        <li class="elements__item">
+          <div class="card">
+            <img src="./images/paris.jpg" alt="париж" class="card__img">
+            <div class="card__footer">
+              <h2 class="card__title">Paris</h2>
+              <button class="button button_type_like card__like" type="button">
+              </button>
+            </div>
+          </div>
+        </li>
+        <li class="elements__item">
+          <div class="card">
+            <img src="./images/photo.jpg" alt="просто фото" class="card__img">
+            <div class="card__footer">
+              <h2 class="card__title">Фото неизвестного места на планете</h2>
+              <button class="button button_type_like card__like" type="button">
+              </button>
+            </div>
+          </div>
+        </li>
+        <li class="elements__item">
+          <div class="card">
+            <img src="./images/stockholm.jpg" alt="стокгольм" class="card__img">
+            <div class="card__footer">
+              <h2 class="card__title">Стокгольм</h2>
+              <button class="button button_type_like card__like" type="button">
+              </button>
+            </div>
+          </div>
+        </li>
+        <li class="elements__item">
+          <div class="card">
+            <img src="./images/walls.jpg" alt="стены" class="card__img">
+            <div class="card__footer">
+              <h2 class="card__title">Стены</h2>
+              <button class="button button_type_like card__like" type="button">
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
     </section>
   </main>
   <footer class="footer page__footer">
@@ -89,16 +95,17 @@
   </footer>
   <div class="pop-up">
     <div class="pop-up__overlay">
-      <img src="./images/Close.svg" alt="закрыть" class="pop-up__close">
-      <form class="form pop-up__form">
+      <button class="button button_type_close pop-up__close" type="button">
+      </button>
+      <form class="form pop-up__form" name="pop-up-form">
         <h3 class="form__title">Редактировать профиль</h3>
-        <input type="text" class="input form__input form__input_type_name">
-        <input type="text" class="input form__input form__input_type_activity">
-        <input type="submit" class="input button form__input form__input_type_save button_type_submit" value="Сохранить">
+        <input type="text" class="input form__input form__input_type_name" name="pop-up-name">
+        <input type="text" class="input form__input form__input_type_activity" name="pop-up-activity">
+        <button type="submit" class="input button form__input form__input_type_save button_type_submit">Сохранить</button>
       </form>
     </div>
   </div>
-  <script type="module" src="./pages/index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 
 </html>

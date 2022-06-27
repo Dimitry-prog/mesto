@@ -1,28 +1,3 @@
-:root {
-  --main-background-color: #000;
-  --main-text-color: #fff;
-  --max-width: 1280px;
-  --header-border-color: #545454;
-  --header-border-opacity: .7;
-  --popup-background-opacity: .5;
-  --popup-inputs-opacity: .2;
-  --popup-shadow: rgba(0, 0, 0, .5);
-  --input-border-opacity: rgba(0, 0, 0, .2);
-  --button-add-opacity: .6;
-  --button-save-opacity: .8;
-  --font-weight-900: 900;
-  --font-weight-500: 500;
-  --font-weight-400: 400;
-  --font-size-main: 18px;
-  --line-height-main: 22px;
-  --font-size-cards: 24px;
-  --line-height-cards: 29px;
-  --font-size-title: 42px;
-  --line-height-title: 48px;
-  --font-family-main: "Inter", "Arial", sans-serif;
-  --font-style-main: normal;
-}
-
 .page {
   margin: 0 auto;
   padding: 0 200px;
@@ -51,6 +26,6 @@
 
 @media screen and (max-width: 487px) {
   .page {
-    padding: 0 20px;
+    padding: 0;
   }
 }
