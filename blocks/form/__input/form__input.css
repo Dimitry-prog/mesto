@@ -2,6 +2,6 @@
   margin-bottom: 30px;
 }
 
-.form__input:last-of-type {
+.form__input:last-child {
   margin-bottom: 0;
 }

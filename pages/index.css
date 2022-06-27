@@ -6,6 +6,7 @@
 
 @import url(../blocks/page/page.css);
 @import url(../blocks/page/__header/page__header.css);
+@import url(../blocks/page/__main/page__main.css);
 @import url(../blocks/page/__footer/page__footer.css);
 @import url(../blocks/page/_type/page_type_hidden.css);
 
@@ -48,6 +49,8 @@
 /**** ELEMENTS  ****/
 
 @import url(../blocks/elements/elements.css);
+@import url(../blocks/elements/__list/elements__list.css);
+@import url(../blocks/elements/__item/elements__item.css);
 
 /**** CARD ****/
 
@@ -68,7 +71,7 @@
 @import url(../blocks/pop-up/__overlay/pop-up__overlay.css);
 @import url(../blocks/pop-up/__close/pop-up__close.css);
 @import url(../blocks/pop-up/__form/pop-up__form.css);
-@import url(../blocks/pop-up/_type/pop-up_type_show.css);
+@import url(../blocks/pop-up/_opened/pop-up_opened.css);
 
 /**** INPUT ****/
 

@@ -2,7 +2,8 @@
   --main-background-color: #000;
   --main-text-color: #fff;
   --max-width: 1280px;
-  --header-border-color: #545454;
+  --header-border-color: rgba(84, 84, 84);
+  --header-border-color-plus-opacity: rgba(84, 84, 84, .7);
   --header-border-opacity: .7;
   --popup-background-opacity: .5;
   --popup-inputs-opacity: .2;

@@ -1,19 +1,12 @@
 .page__header {
   padding: 45px 0 0;
-  position: relative;
+  border-bottom: 1px solid var(--header-border-color-plus-opacity);
 }
 
-.page__header::before {
-  content: '';
-  position: absolute;
-  border-bottom: 1px solid var(--header-border-color);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  max-width: 880px;
-  margin: 0 auto;
-  opacity: var( --header-border-opacity);
+@media screen and (max-width: 487px) {
+  .page__header {
+    padding: 45px 20px 0;
+  }
 }
 
 @media screen and (max-width: 430px) {
