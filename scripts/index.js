@@ -9,6 +9,8 @@ const saveButton = document.querySelector('.button_type_submit');
 const pageElement = document.querySelector('.page');
 const closePopUpButton = document.querySelector('.pop-up__close');
 
+const popUpForm = document.querySelector('.pop-up__form');
+
 function togglePopup() {
   popUp.classList.toggle('pop-up_opened');
   pageElement.classList.toggle('page_type_hidden');
@@ -20,7 +22,7 @@ editButton.addEventListener('click', function() {
   togglePopup();
 });
 
-saveButton.addEventListener('click', function(event) {
+popUpForm.addEventListener('submit', function(event) {
   event.preventDefault();
   profileName.textContent = editName.value;
   profileActivity.textContent = editActivity.value;
