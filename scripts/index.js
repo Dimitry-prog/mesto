@@ -22,7 +22,7 @@ const initialCards = [{
     link: 'https://images.unsplash.com/photo-1657018982784-d7d573fe2745?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80'
   },
   {
-    name: 'Ночной самолет в небе',
+    name: 'Ночной самолет в синем небе',
     link: 'https://images.unsplash.com/photo-1657014826033-bbd8140711db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=754&q=80'
   },
   {
@@ -84,3 +84,17 @@ addCardButton.addEventListener('click', function() {
 });
 
 closePopUpCard.addEventListener('click', togglePopupAddCard);
+
+function initCards() {
+  initialCards.forEach(item => {
+    const cardsTemplate = document.querySelector('#template__elements-item').content;
+    const elementsItem = cardsTemplate.querySelector('.elements__item').cloneNode(true);
+    const card = elementsItem.querySelector('.card');
+    card.querySelector('.card__img').src = item.link;
+    card.querySelector('.card__title').textContent = item.name;
+    const elementsList = document.querySelector('.elements__list');
+    elementsItem.append(card);
+    elementsList.append(elementsItem);
+  });
+}
+initCards();

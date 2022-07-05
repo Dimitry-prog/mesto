@@ -26,68 +26,7 @@
       </button>
     </section>
     <section class="elements main__elements">
-      <ul class="elements__list">
-        <li class="elements__item">
-          <div class="card">
-            <img src="./images/baraks.jpg" alt="бараки" class="card__img">
-            <div class="card__footer">
-              <h2 class="card__title">Barraks</h2>
-              <button class="button button_type_like card__like" type="button">
-              </button>
-            </div>
-          </div>
-        </li>
-        <li class="elements__item">
-          <div class="card">
-            <img src="./images/germany.jpg" alt="германия" class="card__img">
-            <div class="card__footer">
-              <h2 class="card__title">Germany</h2>
-              <button class="button button_type_like card__like" type="button">
-              </button>
-            </div>
-          </div>
-        </li>
-        <li class="elements__item">
-          <div class="card">
-            <img src="./images/paris.jpg" alt="париж" class="card__img">
-            <div class="card__footer">
-              <h2 class="card__title">Paris</h2>
-              <button class="button button_type_like card__like" type="button">
-              </button>
-            </div>
-          </div>
-        </li>
-        <li class="elements__item">
-          <div class="card">
-            <img src="./images/photo.jpg" alt="просто фото" class="card__img">
-            <div class="card__footer">
-              <h2 class="card__title">Фото неизвестного места на планете</h2>
-              <button class="button button_type_like card__like" type="button">
-              </button>
-            </div>
-          </div>
-        </li>
-        <li class="elements__item">
-          <div class="card">
-            <img src="./images/stockholm.jpg" alt="стокгольм" class="card__img">
-            <div class="card__footer">
-              <h2 class="card__title">Стокгольм</h2>
-              <button class="button button_type_like card__like" type="button">
-              </button>
-            </div>
-          </div>
-        </li>
-        <li class="elements__item">
-          <div class="card">
-            <img src="./images/walls.jpg" alt="стены" class="card__img">
-            <div class="card__footer">
-              <h2 class="card__title">Стены</h2>
-              <button class="button button_type_like card__like" type="button">
-              </button>
-            </div>
-          </div>
-        </li>
-      </ul>
+      <ul class="elements__list"></ul>
     </section>
   </main>
   <footer class="footer page__footer">
@@ -117,6 +56,20 @@
       </form>
     </div>
   </div>
+
+  <template id="template__elements-item">
+    <li class="elements__item">
+      <div class="card">
+        <img src="./images/baraks.jpg" alt="бараки" class="card__img">
+        <div class="card__footer">
+          <h2 class="card__title">Barraks</h2>
+          <button class="button button_type_like card__like" type="button">
+          </button>
+        </div>
+      </div>
+    </li>
+  </template>
+
   <script src="./scripts/index.js"></script>
 </body>
 
