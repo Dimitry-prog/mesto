@@ -39,8 +39,6 @@ const initialCards = [{
   }
 ];
 
-
-
 function togglePopupProfile() {
   popUpProfile.classList.toggle('pop-up_opened');
   pageElement.classList.toggle('page_type_hidden');
@@ -78,10 +76,7 @@ popUpCard.addEventListener('click', function(event) {
   }
 });
 
-addCardButton.addEventListener('click', function() {
-
-  togglePopupAddCard();
-});
+addCardButton.addEventListener('click', togglePopupAddCard);
 
 closePopUpCard.addEventListener('click', togglePopupAddCard);
 
