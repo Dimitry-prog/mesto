@@ -93,15 +93,27 @@
   <footer class="footer page__footer">
     <p class="footer__copyright">&copy; 2022 Dimitry</p>
   </footer>
-  <div class="pop-up">
+  <div class="pop-up pop-up_profile">
     <div class="pop-up__overlay">
-      <button class="button button_type_close pop-up__close" type="button">
+      <button class="button button_type_close-profile pop-up__close" type="button">
       </button>
-      <form class="form pop-up__form" name="pop-up-form">
+      <form class="form form_type_profile pop-up__form" name="pop-up-form">
         <h3 class="form__title">Редактировать профиль</h3>
         <input type="text" class="input form__input form__input_type_name" name="pop-up-name">
         <input type="text" class="input form__input form__input_type_activity" name="pop-up-activity">
         <button type="submit" class="button button_type_submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="pop-up pop-up_card">
+    <div class="pop-up__overlay">
+      <button class="button button_type_close-card pop-up__close" type="button">
+      </button>
+      <form class="form form_type_card pop-up__form" name="pop-up-form">
+        <h3 class="form__title">Новое место</h3>
+        <input type="text" class="input form__input form__input_type_name" name="pop-up-name" placeholder="Название">
+        <input type="text" class="input form__input form__input_type_activity" name="pop-up-activity" placeholder="Ссылка на картинку">
+        <button type="submit" class="button button_type_submit">Создать</button>
       </form>
     </div>
   </div>
