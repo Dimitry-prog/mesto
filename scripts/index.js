@@ -3,8 +3,8 @@ const popUpProfile = document.querySelector('.pop-up_profile');
 const popUpOverlay = document.querySelector('.pop-up__overlay');
 const profileName = document.querySelector('.profile__name');
 const profileActivity = document.querySelector('.profile__activity');
-const editName = document.querySelector('.form__input_type_name');
-const editActivity = document.querySelector('.form__input_type_activity');
+const nameInput = document.querySelector('.form__input_type_name');
+const activityInput = document.querySelector('.form__input_type_activity');
 const pageElement = document.querySelector('.page');
 const closePopUpProfile = document.querySelector('.button_type_close-profile');
 const popUpFormProfile = document.querySelector('.form_type_profile');
@@ -12,6 +12,8 @@ const popUpCard = document.querySelector('.pop-up_card');
 const addCardButton = document.querySelector('.profile__add');
 const closePopUpCard = document.querySelector('.button_type_close-card');
 const popUpFormCard = document.querySelector('.form_type_card');
+const placeInput = document.querySelector('.form__input_type_place');
+const linkInput = document.querySelector('.form__input_type_link');
 
 const initialCards = [{
     name: 'Порт Баркиз',
@@ -45,15 +47,15 @@ function togglePopupProfile() {
 }
 
 editButton.addEventListener('click', function() {
-  editName.value = profileName.textContent;
-  editActivity.value = profileActivity.textContent;
+  nameInput.value = profileName.textContent;
+  activityInput.value = profileActivity.textContent;
   togglePopupProfile();
 });
 
 popUpFormProfile.addEventListener('submit', function(event) {
   event.preventDefault();
-  profileName.textContent = editName.value;
-  profileActivity.textContent = editActivity.value;
+  profileName.textContent = nameInput.value;
+  profileActivity.textContent = activityInput.value;
   togglePopupProfile();
 });
 

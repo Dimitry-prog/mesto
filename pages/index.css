@@ -86,3 +86,5 @@
 @import url(../blocks/form/__input/_type/form__input_type_name.css);
 @import url(../blocks/form/__input/_type/form__input_type_activity.css);
 @import url(../blocks/form/__input/_type/form__input_type_save.css);
+@import url(../blocks/form/__input/_type/form__input_type_place.css);
+@import url(../blocks/form/__input/_type/form__input_type_link.css);

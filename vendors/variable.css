@@ -8,6 +8,7 @@
   --popup-background-opacity: .5;
   --popup-inputs-opacity: .2;
   --popup-shadow: rgba(0, 0, 0, .5);
+  --popup-transition: .5s;
   --input-border-opacity: rgba(0, 0, 0, .2);
   --button-add-opacity: .6;
   --button-save-opacity: .8;
@@ -24,4 +25,6 @@
   --line-height-input: 17px;
   --font-family-main: "Inter", "Arial", sans-serif;
   --font-style-main: normal;
+  --input-outline: #95c7ff;
+  --input-transition: .3s;
 }
