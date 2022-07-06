@@ -106,6 +106,8 @@ initCards();
 
 function addCard() {
   templateElementsItem(placeInput.value, linkInput.value);
+  displayPopUpImg();
+  deleteCard();
 }
 
 popUpFormCard.addEventListener('submit', function(event) {
@@ -148,19 +150,12 @@ function displayPopUpImg() {
   const cardImgs = document.querySelectorAll('.card__img');
   const popUpImges = document.querySelector('.pop-up__img');
   const popUpText = document.querySelector('.pop-up__text');
-  let img = document.createElement('img');
-  //popUpOverlay.append(img);
   cardImgs.forEach(item => {
     item.addEventListener('click', function() {
-      // popUpOverlay.insertAdjacentHTML('beforeend', ` <img src="${this.src}" alt="${this.alt}" class="pop-up__img">`)
-      /*       img.classList.add('pop-up__img');
-            img.src = this.src;
-            img.alt = this.alt; */
       popUpImges.src = this.src;
       popUpImges.alt = this.alt;
       popUpText.textContent = this.alt;
       togglePopUp(popUpImg);
-
     });
   })
 }
