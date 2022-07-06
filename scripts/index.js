@@ -113,11 +113,22 @@ popUpFormCard.addEventListener('submit', function(event) {
 });
 
 function likeCards() {
-  const cardLike = document.querySelectorAll('.card__like');
-  cardLike.forEach(item => {
+  const cardLikes = document.querySelectorAll('.card__like');
+  cardLikes.forEach(item => {
     item.addEventListener('click', function() {
       this.classList.toggle('card__like_active');
     });
   });
 }
 likeCards();
+
+function deleteCard() {
+  const deleteCards = document.querySelectorAll('.card__delete');
+  deleteCards.forEach(item => {
+    item.addEventListener('click', function() {
+      this.parentElement.parentElement.remove();
+    });
+  })
+};
+
+deleteCard();
