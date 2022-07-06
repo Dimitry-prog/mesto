@@ -23,6 +23,8 @@
   --line-height-title: 48px;
   --font-size-input: 14px;
   --line-height-input: 17px;
+  --font-size-figcaption: 12px;
+  --line-height-figcaption: 15px;
   --font-family-main: "Inter", "Arial", sans-serif;
   --font-style-main: normal;
   --input-outline: #95c7ff;

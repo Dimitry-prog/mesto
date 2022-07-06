@@ -14,6 +14,8 @@ const closePopUpCard = document.querySelector('.button_type_close-card');
 const popUpFormCard = document.querySelector('.form_type_card');
 const placeInput = document.querySelector('.form__input_type_place');
 const linkInput = document.querySelector('.form__input_type_link');
+const popUpImg = document.querySelector('.pop-up_img');
+const closePopUpImg = document.querySelector('.button_type_close-img');
 
 const initialCards = [{
     name: 'Порт Баркиз',
@@ -130,5 +132,36 @@ function deleteCard() {
     });
   })
 };
-
 deleteCard();
+
+popUpImg.addEventListener('click', function(event) {
+  if (event.target === popUpImg) {
+    togglePopUp(popUpImg);
+  }
+});
+
+closePopUpImg.addEventListener('click', function() {
+  togglePopUp(popUpImg);
+});
+
+function displayPopUpImg() {
+  const cardImgs = document.querySelectorAll('.card__img');
+  const popUpImges = document.querySelector('.pop-up__img');
+  const popUpText = document.querySelector('.pop-up__text');
+  let img = document.createElement('img');
+  //popUpOverlay.append(img);
+  cardImgs.forEach(item => {
+    item.addEventListener('click', function() {
+      // popUpOverlay.insertAdjacentHTML('beforeend', ` <img src="${this.src}" alt="${this.alt}" class="pop-up__img">`)
+      /*       img.classList.add('pop-up__img');
+            img.src = this.src;
+            img.alt = this.alt; */
+      popUpImges.src = this.src;
+      popUpImges.alt = this.alt;
+      popUpText.textContent = this.alt;
+      togglePopUp(popUpImg);
+
+    });
+  })
+}
+displayPopUpImg();
