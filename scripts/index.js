@@ -152,7 +152,7 @@ function displayPopUpImg() {
   const popUpText = document.querySelector('.pop-up__text');
   cardImgs.forEach(item => {
     item.addEventListener('click', function() {
-      popUpImges.src = this.src;
+      popUpImges.setAttribute('src', this.src);
       popUpImges.alt = this.alt;
       popUpText.textContent = this.alt;
       togglePopUp(popUpImg);
