@@ -60,6 +60,7 @@
 @import url(../blocks/card/__footer/card__footer.css);
 @import url(../blocks/card/__title/card__title.css);
 @import url(../blocks/card/__like/card__like.css);
+@import url(../blocks/card/__like/_active/card__like_active.css);
 
 /**** FOOTER ****/
 

@@ -92,7 +92,7 @@ function templateElementsItem(title, link) {
   card.querySelector('.card__title').textContent = title;
   const elementsList = document.querySelector('.elements__list');
   elementsItem.append(card);
-  elementsList.append(elementsItem);
+  elementsList.prepend(elementsItem);
 }
 
 function initCards() {
@@ -103,12 +103,21 @@ function initCards() {
 initCards();
 
 function addCard() {
-  const elementsList = document.querySelector('.elements__list');
-  elementsList.prepend(templateElementsItem(placeInput.value, linkInput.value));
+  templateElementsItem(placeInput.value, linkInput.value);
 }
 
 popUpFormCard.addEventListener('submit', function(event) {
   event.preventDefault();
   addCard();
-  console.log(templateElementsItem(placeInput.value, linkInput.value));
+  togglePopUp(popUpCard);
 });
+
+function likeCards() {
+  const cardLike = document.querySelectorAll('.card__like');
+  cardLike.forEach(item => {
+    item.addEventListener('click', function() {
+      this.classList.toggle('card__like_active');
+    });
+  });
+}
+likeCards();
