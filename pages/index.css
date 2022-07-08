@@ -75,7 +75,7 @@
 @import url(../blocks/pop-up/__close/pop-up__close.css);
 @import url(../blocks/pop-up/__form/pop-up__form.css);
 @import url(../blocks/pop-up/_opened/pop-up_opened.css);
-@import url(../blocks/pop-up/__img/pop-up__img.css);
+@import url(../blocks/pop-up/__picture/pop-up__img.css);
 @import url(../blocks/pop-up/__fiqure/pop-up__figure.css);
 @import url(../blocks/pop-up/__text/pop-up__text.css);
 @import url(../blocks/pop-up/__overlay/_type/pop-up__overlay_type_img.css);
