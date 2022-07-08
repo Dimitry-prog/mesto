@@ -1,4 +1,6 @@
-.pop-up__overlay_type_img {}
+.pop-up__overlay_type_img {
+  max-height: 75vh;
+}
 
 @media screen and (max-width: 350px) {
   .pop-up__overlay_type_img {
