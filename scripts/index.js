@@ -86,7 +86,7 @@ closePopUpCard.addEventListener('click', function() {
 });
 
 function templateElementsItem(title, link) {
-  const cardsTemplate = document.querySelector('#template__elements-item').content;
+  const cardsTemplate = document.querySelector('#template-card').content;
   const elementsItem = cardsTemplate.querySelector('.elements__item').cloneNode(true);
   const card = elementsItem.querySelector('.card');
   card.querySelector('.card__img').src = link;
