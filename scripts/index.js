@@ -43,46 +43,39 @@ const initialCards = [{
   }
 ];
 
-function togglePopUp(popUpName) {
-  popUpName.classList.toggle('pop-up_opened');
-  pageElement.classList.toggle('page_type_hidden');
+function openPopUp(popUpName) {
+  popUpName.classList.add('pop-up_opened');
+  pageElement.classList.add('page_type_hidden');
+}
+
+function closePopUp(popUpName) {
+  popUpName.classList.remove('pop-up_opened');
+  pageElement.classList.remove('page_type_hidden');
 }
 
 profileEditButton.addEventListener('click', function() {
   nameInput.value = profileName.textContent;
   activityInput.value = profileActivity.textContent;
-  togglePopUp(popUpProfile);
+  openPopUp(popUpProfile);
 });
 
 popUpProfileForm.addEventListener('submit', function(event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
   profileActivity.textContent = activityInput.value;
-  togglePopUp(popUpProfile);
+  closePopUp(popUpProfile);
 });
 
 profilePopUpClose.addEventListener('click', function() {
-  togglePopUp(popUpProfile);
-});
-
-popUpProfile.addEventListener('click', function(event) {
-  if (event.target === popUpProfile) {
-    togglePopUp(popUpProfile);
-  }
-});
-
-popUpCard.addEventListener('click', function(event) {
-  if (event.target === popUpCard) {
-    togglePopUp(popUpCard);
-  }
+  closePopUp(popUpProfile);
 });
 
 cardAddButton.addEventListener('click', function() {
-  togglePopUp(popUpCard);
+  openPopUp(popUpCard);
 });
 
 popUpCardClose.addEventListener('click', function() {
-  togglePopUp(popUpCard);
+  closePopUp(popUpCard);
 });
 
 function templateElementsItem(title, link) {
@@ -113,7 +106,7 @@ function addCard() {
 popUpCardForm.addEventListener('submit', function(event) {
   event.preventDefault();
   addCard();
-  togglePopUp(popUpCard);
+  closePopUp(popUpCard);
 });
 
 function likeCards() {
@@ -136,14 +129,8 @@ function deleteCard() {
 };
 deleteCard();
 
-popUpImg.addEventListener('click', function(event) {
-  if (event.target === popUpImg) {
-    togglePopUp(popUpImg);
-  }
-});
-
 popUpImgClose.addEventListener('click', function() {
-  togglePopUp(popUpImg);
+  closePopUp(popUpImg);
 });
 
 function displayPopUpImg() {
