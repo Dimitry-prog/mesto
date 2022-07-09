@@ -76,11 +76,11 @@ function createCard(title, link) {
   elementsItem.querySelector('.card__like').addEventListener('click', function() {
     this.classList.toggle('card__like_active');
   });
-  renderCard(elementsList, elementsItem);
 }
 
 function addCard(...par) {
-  createCard(...par);
+  const newCard = createCard(...par);
+  renderCard(elementsList, newCard);
 }
 
 function renderCard(parent, child) {
