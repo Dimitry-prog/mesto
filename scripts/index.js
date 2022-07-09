@@ -79,8 +79,8 @@ function createCard(title, link) {
   renderCard(elementsList, elementsItem);
 }
 
-function addCard(title, link) {
-  createCard(title, link);
+function addCard(...par) {
+  createCard(...par);
 }
 
 function renderCard(parent, child) {
