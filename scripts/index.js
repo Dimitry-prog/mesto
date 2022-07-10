@@ -76,6 +76,7 @@ function createCard(title, link) {
   elementsItem.querySelector('.card__like').addEventListener('click', function() {
     this.classList.toggle('card__like_active');
   });
+  return elementsItem;
 }
 
 function addCard(...par) {
