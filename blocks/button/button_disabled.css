@@ -1,0 +1,7 @@
+.button_disabled {
+  border: 1px solid var(--main-background-color);
+  color: var(--main-background-color);
+  background-color: var(--main-text-color);
+  opacity: var(--button-noValid-opacity);
+  user-select: none;
+}

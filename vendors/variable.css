@@ -25,9 +25,15 @@
   --line-height-input: 17px;
   --font-size-figcaption: 12px;
   --line-height-figcaption: 15px;
+  --input-error-message-font-size: 12px;
+  --input-error-message-line-height: 15px;
+  --input-error-message-color: #FF0000;
   --font-family-main: "Inter", "Arial", sans-serif;
   --font-style-main: normal;
   --input-outline: #95c7ff;
   --input-transition: .3s;
   --delete-opacity: .6;
+  --button-noValid-color: #E5E5E5;
+  --button-noValid-opacity: .2;
+  --noValid-border-color: #FF0000;
 }

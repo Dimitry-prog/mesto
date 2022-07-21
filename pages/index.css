@@ -36,6 +36,7 @@
 @import url(../blocks/button/_type/button_type_like.css);
 @import url(../blocks/button/__icon/_type/button__icon_type_like.css);
 @import url(../blocks/button/_type/button_type_submit.css);
+@import url(../blocks/button/button_disabled.css);
 
 /**** PROFILE ****/
 
@@ -83,6 +84,11 @@
 /**** INPUT ****/
 
 @import url(../blocks/input/input.css);
+@import url(../blocks/input/error-message/input__error-message.css);
+@import url(../blocks/input/name-error/input__name-error.css);
+@import url(../blocks/input/activity-error/);
+@import url(../blocks/input/place-error/input__place-error.css);
+@import url(../blocks/input/link-error/input__link-error.css);
 
 /**** FORM ****/
 
