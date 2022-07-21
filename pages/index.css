@@ -105,3 +105,5 @@
 @import url(../blocks/form/__input/_type/form__input_type_place.css);
 @import url(../blocks/form/__input/_type/form__input_type_link.css);
 @import url(../blocks/form/__label/form__label.css);
+@import url(../blocks/form/__error-message/form__error-message.css);
+@import url(../blocks/form/__error-message/form__error-message_active.css);

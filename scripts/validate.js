@@ -1,13 +1,13 @@
 function showErrorMessage(formElement, inputElement) {
   const error = formElement.querySelector(`.${inputElement.id}-error`);
-  error.classList.add('input__error-message_active');
+  error.classList.add('form__error-message_active');
   error.textContent = inputElement.validationMessage;
   inputElement.classList.add('input_error');
 }
 
 function hideErrorMessage(formElement, inputElement) {
   const error = formElement.querySelector(`.${inputElement.id}-error`);
-  error.classList.remove('input__error-message_active');
+  error.classList.remove('form__error-message_active');
   error.textContent = '';
   inputElement.classList.remove('input_error');
 }
@@ -37,12 +37,12 @@ function checkInputValidity(formElement, inputElement) {
 }
 
 function resetImputsErrorMessage(formElement) {
-  const errors = Array.from(formElement.querySelectorAll('.input__error-message'));
+  const errors = Array.from(formElement.querySelectorAll('.form__error-message'));
   const inputlist = Array.from(formElement.querySelectorAll('.form__input'));
   const submitButton = formElement.querySelector('.button_type_submit');
   toggleButtonState(submitButton, inputlist);
   errors.forEach(error => {
-    error.classList.remove('input__error-message_active');
+    error.classList.remove('form__error-message_active');
   });
   inputlist.forEach(input => {
     input.classList.remove('input_error');
