@@ -51,6 +51,12 @@ profilePopUpClose.addEventListener('click', function() {
   closePopUp(popUpProfile);
 });
 
+window.addEventListener('keydown', function(event) {
+  if (event.key === "Escape") {
+    closePopUp(popUpProfile);
+  }
+});
+
 cardAddButton.addEventListener('click', function() {
   openPopUp(popUpCard);
   resetImputsErrorMessage(popUpCard);
@@ -60,6 +66,13 @@ cardAddButton.addEventListener('click', function() {
 popUpCardClose.addEventListener('click', function() {
   clearFormFields(popUpCardForm);
   closePopUp(popUpCard);
+});
+
+window.addEventListener('keydown', function(event) {
+  if (event.key === "Escape") {
+    clearFormFields(popUpCardForm);
+    closePopUp(popUpCard);
+  }
 });
 
 function createCard(title, link) {
