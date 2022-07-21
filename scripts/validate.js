@@ -7,15 +7,20 @@
   errorClass: 'popup__error_visible'
 }); */
 
+
+
+
 function showErrorMessage(formElement, inputElement) {
   const error = formElement.querySelector(`.${inputElement.id}-error`);
   error.classList.add('input__error-message_active');
+  inputElement.classList.add('input_error');
   error.textContent = inputElement.validationMessage;
 }
 
 function hideErrorMessage(formElement, inputElement) {
   const error = formElement.querySelector(`.${inputElement.id}-error`);
   error.classList.remove('input__error-message_active');
+  inputElement.classList.remove('input_error');
   error.textContent = '';
 }
 
@@ -30,12 +35,10 @@ function hideErrorMessage(formElement, inputElement) {
 } */
 
 function isValidInput(formElement, inputElement) {
-  if (inputElement.value.valid) {
-    hideErrorMessage(formElement, inputElement);
-    toggleButtonState(formElement);
-  } else {
+  if (!inputElement.validity.valid) {
     showErrorMessage(formElement, inputElement);
-    toggleButtonState(formElement);
+  } else {
+    hideErrorMessage(formElement, inputElement);
   }
 }
 
@@ -46,13 +49,18 @@ function toggleButtonState(formElement) {
 
 
 function setEvenetListeners(formElement) {
-  const inputs = Array.from(formElement.querySelectorAll('form__input'));
-
+  const inputs = Array.from(formElement.querySelectorAll('.form__input'));
+  console.log(inputs);
   inputs.forEach(input => {
     input.addEventListener('input', function() {
       isValidInput(formElement, input);
+      console.log('popo');
+      console.log(input.validity.valid);
     });
   });
 }
+const popUpProfileForm2 = document.querySelector('.form_type_profile')
+setEvenetListeners(popUpProfileForm2);
 
-setEvenetListeners(popUpProfileForm);
+const popUpProfileForm3 = document.querySelector('.form_type_card')
+setEvenetListeners(popUpProfileForm3);

@@ -4,4 +4,7 @@
   color: var(--input-error-message-color);
   opacity: 0;
   visibility: hidden;
+  position: absolute;
+  left: 0;
+  top: 35px;
 }

@@ -85,10 +85,14 @@
 
 @import url(../blocks/input/input.css);
 @import url(../blocks/input/error-message/input__error-message.css);
-@import url(../blocks/input/name-error/input__name-error.css);
+@import url(../blocks/input/error-message/input__error-message_active.css);
+@import url(../blocks/input/input_error.css);
+
+/* @import url(../blocks/input/name-error/input__name-error.css);
 @import url(../blocks/input/activity-error/);
 @import url(../blocks/input/place-error/input__place-error.css);
-@import url(../blocks/input/link-error/input__link-error.css);
+@import url(../blocks/input/link-error/input__link-error.css); */
+
 
 /**** FORM ****/
 
@@ -100,3 +104,4 @@
 @import url(../blocks/form/__input/_type/form__input_type_save.css);
 @import url(../blocks/form/__input/_type/form__input_type_place.css);
 @import url(../blocks/form/__input/_type/form__input_type_link.css);
+@import url(../blocks/form/__label/form__label.css);
