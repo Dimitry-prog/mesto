@@ -6,5 +6,5 @@
   visibility: hidden;
   position: absolute;
   left: 0;
-  top: 35px;
+  top: calc(100% - 30px);
 }

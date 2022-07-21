@@ -4,4 +4,5 @@
   background-color: var(--main-text-color);
   opacity: var(--button-noValid-opacity);
   user-select: none;
+  pointer-events: none;
 }

@@ -36,6 +36,8 @@ profileEditButton.addEventListener('click', function() {
   nameInput.value = profileName.textContent;
   activityInput.value = profileActivity.textContent;
   openPopUp(popUpProfile);
+  resetImputsErrorMessage(popUpProfile);
+  setEvenetListeners(popUpProfile);
 });
 
 popUpProfileForm.addEventListener('submit', function(event) {
@@ -51,6 +53,8 @@ profilePopUpClose.addEventListener('click', function() {
 
 cardAddButton.addEventListener('click', function() {
   openPopUp(popUpCard);
+  resetImputsErrorMessage(popUpCard);
+  setEvenetListeners(popUpCard);
 });
 
 popUpCardClose.addEventListener('click', function() {
@@ -108,4 +112,25 @@ popUpCardForm.addEventListener('submit', function(event) {
 
 popUpImgClose.addEventListener('click', function() {
   closePopUp(popUpImg);
+});
+
+
+popUpProfile.addEventListener('click', function(event) {
+  if (event.target === popUpProfile) {
+    closePopUp(popUpProfile);
+    clearFormFields(popUpCardForm);
+  }
+});
+
+popUpCard.addEventListener('click', function(event) {
+  if (event.target === popUpCard) {
+    closePopUp(popUpCard);
+    clearFormFields(popUpCardForm);
+  }
+});
+
+popUpImg.addEventListener('click', function(event) {
+  if (event.target === popUpImg) {
+    closePopUp(popUpImg);
+  }
 });
