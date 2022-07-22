@@ -53,7 +53,7 @@ profileEditButton.addEventListener('click', function() {
   setEvenetListeners(popUpProfile);
 });
 
-popUpProfile.addEventListener('click', function(event) {
+/* popUpProfile.addEventListener('click', function(event) {
   if (event.target === popUpProfile) {
     closePopUp(popUpProfile);
     clearFormFields(popUpCardForm);
@@ -62,7 +62,7 @@ popUpProfile.addEventListener('click', function(event) {
 
 profilePopUpClose.addEventListener('click', function() {
   closePopUp(popUpProfile);
-});
+}); */
 
 popUpProfileForm.addEventListener('submit', function(event) {
   event.preventDefault();
@@ -79,7 +79,7 @@ cardAddButton.addEventListener('click', function() {
   setEvenetListeners(popUpCard);
 });
 
-popUpCard.addEventListener('click', function(event) {
+/* popUpCard.addEventListener('click', function(event) {
   if (event.target === popUpCard) {
     closePopUp(popUpCard);
     clearFormFields(popUpCardForm);
@@ -89,7 +89,7 @@ popUpCard.addEventListener('click', function(event) {
 popUpCardClose.addEventListener('click', function() {
   clearFormFields(popUpCardForm);
   closePopUp(popUpCard);
-});
+}); */
 
 popUpCardForm.addEventListener('submit', function(event) {
   event.preventDefault();
@@ -130,16 +130,16 @@ function renderCard(parent, child) {
   parent.prepend(child);
 }
 
-function renderCards() {
+function renderInitialCards() {
   initialCards.forEach(item => {
     addCard(item.name, item.link);
   });
 }
-renderCards();
+renderInitialCards();
 
 /* IMG */
 
-popUpImgClose.addEventListener('click', function() {
+/* popUpImgClose.addEventListener('click', function() {
   closePopUp(popUpImg);
 });
 
@@ -147,10 +147,25 @@ popUpImg.addEventListener('click', function(event) {
   if (event.target === popUpImg) {
     closePopUp(popUpImg);
   }
-});
+}); */
 
 /* CLEAR FORM FILDS FUNC */
 
 function clearFormFields(formName) {
   formName.reset();
 }
+
+/* так не работает ошибка 'Failed to execute 'contains' on 'Node': parameter 1 is not of type 'Node'' */
+
+const popUps = document.querySelectorAll('.pop-up');
+popUps.forEach(popUp => {
+  popUp.addEventListener('mousedown', function(event) {
+    event.stopPropagation();
+    if (event.target.contains('pop-up_opened')) {
+      closePopUp(popUp);
+    }
+    if (event.target.contains('pop-up__close')) {
+      closePopUp(popUp);
+    }
+  });
+});
