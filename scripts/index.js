@@ -7,15 +7,12 @@ const pageElement = document.querySelector('.page');
 const popUpCard = document.querySelector('.pop-up_card');
 const cardAddButton = document.querySelector('.profile__add');
 const popUpImg = document.querySelector('.pop-up_img');
-const profilePopUpClose = popUpProfile.querySelector('.button_type_close-profile');
 const popUpProfileForm = popUpProfile.querySelector('.form_type_profile');
 const nameInput = popUpProfileForm.querySelector('.form__input_type_name');
 const activityInput = popUpProfileForm.querySelector('.form__input_type_activity');
 const popUpCardForm = popUpCard.querySelector('.form_type_card');
-const popUpCardClose = popUpCard.querySelector('.button_type_close-card');
 const placeInput = popUpCardForm.querySelector('.form__input_type_place');
 const linkInput = popUpCardForm.querySelector('.form__input_type_link');
-const popUpImgClose = popUpImg.querySelector('.button_type_close-img');
 const popUpText = popUpImg.querySelector('.pop-up__text');
 const popUpFiqure = popUpImg.querySelector('.pop-up__fiqure');
 const popUpPicture = popUpImg.querySelector('.pop-up__picture');
@@ -53,17 +50,6 @@ profileEditButton.addEventListener('click', function() {
   setEvenetListeners(popUpProfile);
 });
 
-/* popUpProfile.addEventListener('click', function(event) {
-  if (event.target === popUpProfile) {
-    closePopUp(popUpProfile);
-    clearFormFields(popUpCardForm);
-  }
-});
-
-profilePopUpClose.addEventListener('click', function() {
-  closePopUp(popUpProfile);
-}); */
-
 popUpProfileForm.addEventListener('submit', function(event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
@@ -78,18 +64,6 @@ cardAddButton.addEventListener('click', function() {
   resetImputsErrorMessage(popUpCard);
   setEvenetListeners(popUpCard);
 });
-
-/* popUpCard.addEventListener('click', function(event) {
-  if (event.target === popUpCard) {
-    closePopUp(popUpCard);
-    clearFormFields(popUpCardForm);
-  }
-});
-
-popUpCardClose.addEventListener('click', function() {
-  clearFormFields(popUpCardForm);
-  closePopUp(popUpCard);
-}); */
 
 popUpCardForm.addEventListener('submit', function(event) {
   event.preventDefault();
@@ -137,35 +111,25 @@ function renderInitialCards() {
 }
 renderInitialCards();
 
-/* IMG */
-
-/* popUpImgClose.addEventListener('click', function() {
-  closePopUp(popUpImg);
-});
-
-popUpImg.addEventListener('click', function(event) {
-  if (event.target === popUpImg) {
-    closePopUp(popUpImg);
-  }
-}); */
-
 /* CLEAR FORM FILDS FUNC */
 
 function clearFormFields(formName) {
   formName.reset();
 }
 
-/* так не работает ошибка 'Failed to execute 'contains' on 'Node': parameter 1 is not of type 'Node'' */
-
-const popUps = document.querySelectorAll('.pop-up');
-popUps.forEach(popUp => {
-  popUp.addEventListener('mousedown', function(event) {
-    event.stopPropagation();
-    if (event.target.contains('pop-up_opened')) {
-      closePopUp(popUp);
-    }
-    if (event.target.contains('pop-up__close')) {
-      closePopUp(popUp);
-    }
+function closeAnyPopUp() {
+  const popUps = document.querySelectorAll('.pop-up');
+  popUps.forEach(popUp => {
+    popUp.addEventListener('mousedown', function(event) {
+      if (event.target.classList.contains('pop-up_opened')) {
+        clearFormFields(popUpCardForm);
+        closePopUp(popUp);
+      }
+      if (event.target.classList.contains('pop-up__close')) {
+        clearFormFields(popUpCardForm);
+        closePopUp(popUp);
+      }
+    });
   });
-});
+}
+closeAnyPopUp();
