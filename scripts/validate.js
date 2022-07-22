@@ -36,25 +36,36 @@ function checkInputValidity(formElement, inputElement) {
 
 function resetImputsErrorMessage(formElement) {
   const errors = Array.from(formElement.querySelectorAll('.form__error-message'));
-  const inputlist = Array.from(formElement.querySelectorAll('.form__input'));
-  const submitButton = formElement.querySelector('.button_type_submit');
-  toggleButtonState(submitButton, inputlist);
   errors.forEach(error => {
     error.classList.remove('form__error-message_active');
   });
-  inputlist.forEach(input => {
+
+  getInputListAndSubmitButton(formElement);
+
+  getInputListAndSubmitButton(formElement).inputlist.forEach(input => {
     input.classList.remove('input_error');
   })
 }
 
 function setEvenetListeners(formElement) {
+  getInputListAndSubmitButton(formElement);
+
+  getInputListAndSubmitButton(formElement).inputlist.forEach(input => {
+    input.addEventListener('input', function() {
+      checkInputValidity(formElement, input);
+      getInputListAndSubmitButton(formElement).toggleButtonState(getInputListAndSubmitButton(formElement).submitButton, getInputListAndSubmitButton(formElement).inputlist);
+    });
+  });
+}
+
+
+function getInputListAndSubmitButton(formElement) {
   const inputlist = Array.from(formElement.querySelectorAll('.form__input'));
   const submitButton = formElement.querySelector('.button_type_submit');
   toggleButtonState(submitButton, inputlist);
-  inputlist.forEach(input => {
-    input.addEventListener('input', function() {
-      checkInputValidity(formElement, input);
-      toggleButtonState(submitButton, inputlist);
-    });
-  });
+  return {
+    inputlist,
+    submitButton,
+    toggleButtonState,
+  }
 }
