@@ -12,8 +12,6 @@ function hideErrorMessage(formElement, inputElement) {
   inputElement.classList.remove('input_error');
 }
 
-
-
 function hasValidInput(inputlist) {
   return inputlist.some(input => {
     return !input.validity.valid
@@ -22,9 +20,9 @@ function hasValidInput(inputlist) {
 
 function toggleButtonState(buttonElement, inputlist) {
   if (hasValidInput(inputlist)) {
-    buttonElement.classList.add('button_disabled');
+    buttonElement.setAttribute('disabled', 'disabled');
   } else {
-    buttonElement.classList.remove('button_disabled');
+    buttonElement.removeAttribute('disabled');
   }
 }
 
@@ -49,8 +47,6 @@ function resetImputsErrorMessage(formElement) {
   })
 }
 
-
-
 function setEvenetListeners(formElement) {
   const inputlist = Array.from(formElement.querySelectorAll('.form__input'));
   const submitButton = formElement.querySelector('.button_type_submit');
@@ -62,14 +58,3 @@ function setEvenetListeners(formElement) {
     });
   });
 }
-
-function enableValidation() {
-  const formList = Array.from(document.querySelectorAll('.form'));
-  formList.forEach(form => {
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-      setEvenetListeners(form);
-    });
-  })
-}
-enableValidation();
