@@ -3,22 +3,20 @@ const profileFormConfig = {
   inputSelector: '.form__input',
   submitButtonSelector: '.button_type_submit',
   submitButtonDisabledClass: 'button_disabled',
-  formErrorMessageClass: 'form__error-message',
+  formErrorMessageSelector: '.form__error-message',
   formErrorClass: 'form__error-message_active',
   inputErrorClass: 'input_error',
 }
 
 const addFormConfig = {
-  formSelector: 'form_type_card',
-  inputSelector: 'form__input',
-  submitButtonSelector: 'button_type_submit',
+  formSelector: '.form_type_card',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.button_type_submit',
   submitButtonDisabledClass: 'button_disabled',
-  formErrorMessageClass: 'form__error-message',
+  formErrorMessageSelector: '.form__error-message',
   formErrorClass: 'form__error-message_active',
   inputErrorClass: 'input_error',
 }
-
-
 
 function showErrorMessage(formElement, inputElement, config) {
   const error = formElement.querySelector(`.${inputElement.id}-error`);
@@ -34,7 +32,7 @@ function hideErrorMessage(formElement, inputElement, config) {
   inputElement.classList.remove(config.inputErrorClass);
 }
 
-function hasValidInput(inputlist) {
+function hasValidInput(inputlist, config) {
   return inputlist.some(input => {
     return !input.validity.valid
   })
@@ -50,46 +48,52 @@ function toggleButtonState(buttonElement, inputlist, config) {
   }
 }
 
-function checkInputValidity(formElement, inputElement) {
+function checkInputValidity(formElement, inputElement, config) {
   if (!inputElement.validity.valid) {
-    showErrorMessage(formElement, inputElement);
+    showErrorMessage(formElement, inputElement, config);
   } else {
-    hideErrorMessage(formElement, inputElement);
+    hideErrorMessage(formElement, inputElement, config);
   }
 }
 
 function resetImputsErrorMessage(formElement, config) {
-  const errors = Array.from(formElement.querySelectorAll(config.formErrorMessageClass));
+  const errors = Array.from(formElement.querySelectorAll(config.formErrorMessageSelector));
   errors.forEach(error => {
     error.classList.remove(config.formErrorClass);
   });
 
-  getInputListAndSubmitButton(formElement);
+  getInputListAndSubmitButton(formElement, config);
 
-  getInputListAndSubmitButton(formElement).inputlist.forEach(input => {
+  getInputListAndSubmitButton(formElement, config).inputlist.forEach(input => {
     input.classList.remove(config.inputErrorClass);
   })
 }
 
-function setEvenetListeners(formElement) {
-  getInputListAndSubmitButton(formElement);
+function setEvenetListeners(formElement, config) {
+  getInputListAndSubmitButton(formElement, config);
 
-  getInputListAndSubmitButton(formElement).inputlist.forEach(input => {
+  getInputListAndSubmitButton(formElement, config).inputlist.forEach(input => {
     input.addEventListener('input', function() {
-      checkInputValidity(formElement, input);
-      getInputListAndSubmitButton(formElement).toggleButtonState(getInputListAndSubmitButton(formElement).submitButton, getInputListAndSubmitButton(formElement).inputlist);
+      checkInputValidity(formElement, input, config);
+      getInputListAndSubmitButton(formElement, config).toggleButtonState(getInputListAndSubmitButton(formElement, config).submitButton, getInputListAndSubmitButton(formElement, config).inputlist, config);
     });
   });
 }
 
-
 function getInputListAndSubmitButton(formElement, config) {
   const inputlist = Array.from(formElement.querySelectorAll(config.inputSelector));
   const submitButton = formElement.querySelector(config.submitButtonSelector);
-  toggleButtonState(submitButton, inputlist);
+  toggleButtonState(submitButton, inputlist, config);
   return {
     inputlist,
     submitButton,
     toggleButtonState,
   }
 }
+
+
+function enableFormValidation(config) {
+  setEvenetListeners(config.formSelector, config);
+}
+
+console.log(addFormConfig.formSelector);
