@@ -1,23 +1,23 @@
 # Проект: Место
+
 Базовый проект по JS без использования бэкенда.
 
 ## Возможности
-* Редактировать профиль (имя, род деятельности)
-* Добавлять/удвлять новые карточки
-* Просмотр картинки в масштабе, через поп-ап
+
+- Валидация форм
+- Редактировать профиль (имя, род деятельности)
+- Добавлять/удвлять новые карточки
+- Просмотр картинки в масштабе, через поп-ап
 
 ### Технологии
 
-* Javascript
-* Full Responsive
-* Desktop first
-* Grid
-* Flex
-* Position
-* BEM
-* Nested Bem
+- Javascript
+- Full Responsive
+- Desktop first
+- Grid
+- Flex
+- Position
+- BEM
+- Nested Bem
 
-
-* [Ссылка на страницу](https://dimitry-prog.github.io/mesto/)
-
-
+- [Ссылка на страницу](https://dimitry-prog.github.io/mesto/)

@@ -1,23 +1,26 @@
-const profileEditButton = document.querySelector('.profile__edit');
-const popUpProfile = document.querySelector('.pop-up_profile');
-const popUpOverlay = document.querySelector('.pop-up__overlay');
+const pageElement = document.querySelector('.page');
+const templateCard = document.querySelector('#template-card').content;
+const elementsList = document.querySelector('.elements__list');
+
 const profileName = document.querySelector('.profile__name');
 const profileActivity = document.querySelector('.profile__activity');
-const pageElement = document.querySelector('.page');
-const popUpCard = document.querySelector('.pop-up_card');
-const cardAddButton = document.querySelector('.profile__add');
-const popUpImg = document.querySelector('.pop-up_img');
+
+const profileEditButton = document.querySelector('.profile__edit');
+const popUpProfile = document.querySelector('.pop-up_profile');
 const popUpProfileForm = popUpProfile.querySelector('.form_type_profile');
 const nameInput = popUpProfileForm.querySelector('.form__input_type_name');
 const activityInput = popUpProfileForm.querySelector('.form__input_type_activity');
+
+const cardAddButton = document.querySelector('.profile__add');
+const popUpCard = document.querySelector('.pop-up_card');
 const popUpCardForm = popUpCard.querySelector('.form_type_card');
 const placeInput = popUpCardForm.querySelector('.form__input_type_place');
 const linkInput = popUpCardForm.querySelector('.form__input_type_link');
+
+const popUpImg = document.querySelector('.pop-up_img');
 const popUpText = popUpImg.querySelector('.pop-up__text');
 const popUpFiqure = popUpImg.querySelector('.pop-up__fiqure');
 const popUpPicture = popUpImg.querySelector('.pop-up__picture');
-const templateCard = document.querySelector('#template-card').content;
-const elementsList = document.querySelector('.elements__list');
 
 /* FUNCTION FOR POP UP */
 
@@ -61,7 +64,6 @@ popUpProfileForm.addEventListener('submit', function(event) {
 cardAddButton.addEventListener('click', function() {
   openPopUp(popUpCard);
   resetImputsErrorMessage(popUpCard, addFormConfig);
-  console.log(addFormConfig.formSelector);
 });
 
 popUpCardForm.addEventListener('submit', function(event) {
