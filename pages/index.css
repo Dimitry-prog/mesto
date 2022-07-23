@@ -88,12 +88,6 @@
 @import url(../blocks/input/error-message/input__error-message_active.css);
 @import url(../blocks/input/input_error.css);
 
-/* @import url(../blocks/input/name-error/input__name-error.css);
-@import url(../blocks/input/activity-error/);
-@import url(../blocks/input/place-error/input__place-error.css);
-@import url(../blocks/input/link-error/input__link-error.css); */
-
-
 /**** FORM ****/
 
 @import url(../blocks/form/form.css);

@@ -1,15 +1,37 @@
-function showErrorMessage(formElement, inputElement) {
-  const error = formElement.querySelector(`.${inputElement.id}-error`);
-  error.classList.add('form__error-message_active');
-  error.textContent = inputElement.validationMessage;
-  inputElement.classList.add('input_error');
+const profileFormConfig = {
+  formSelector: '.form_type_profile',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.button_type_submit',
+  submitButtonDisabledClass: 'button_disabled',
+  formErrorMessageClass: 'form__error-message',
+  formErrorClass: 'form__error-message_active',
+  inputErrorClass: 'input_error',
 }
 
-function hideErrorMessage(formElement, inputElement) {
+const addFormConfig = {
+  formSelector: 'form_type_card',
+  inputSelector: 'form__input',
+  submitButtonSelector: 'button_type_submit',
+  submitButtonDisabledClass: 'button_disabled',
+  formErrorMessageClass: 'form__error-message',
+  formErrorClass: 'form__error-message_active',
+  inputErrorClass: 'input_error',
+}
+
+
+
+function showErrorMessage(formElement, inputElement, config) {
   const error = formElement.querySelector(`.${inputElement.id}-error`);
-  error.classList.remove('form__error-message_active');
+  error.classList.add(config.formErrorClass);
+  error.textContent = inputElement.validationMessage;
+  inputElement.classList.add(config.inputErrorClass);
+}
+
+function hideErrorMessage(formElement, inputElement, config) {
+  const error = formElement.querySelector(`.${inputElement.id}-error`);
+  error.classList.remove(config.formErrorClass);
   error.textContent = '';
-  inputElement.classList.remove('input_error');
+  inputElement.classList.remove(config.inputErrorClass);
 }
 
 function hasValidInput(inputlist) {
@@ -18,11 +40,13 @@ function hasValidInput(inputlist) {
   })
 }
 
-function toggleButtonState(buttonElement, inputlist) {
+function toggleButtonState(buttonElement, inputlist, config) {
   if (hasValidInput(inputlist)) {
-    buttonElement.setAttribute('disabled', 'disabled');
+    buttonElement.setAttribute('disabled', true);
+    buttonElement.classList.add(config.submitButtonDisabledClass);
   } else {
     buttonElement.removeAttribute('disabled');
+    buttonElement.classList.remove(config.submitButtonDisabledClass);
   }
 }
 
@@ -34,16 +58,16 @@ function checkInputValidity(formElement, inputElement) {
   }
 }
 
-function resetImputsErrorMessage(formElement) {
-  const errors = Array.from(formElement.querySelectorAll('.form__error-message'));
+function resetImputsErrorMessage(formElement, config) {
+  const errors = Array.from(formElement.querySelectorAll(config.formErrorMessageClass));
   errors.forEach(error => {
-    error.classList.remove('form__error-message_active');
+    error.classList.remove(config.formErrorClass);
   });
 
   getInputListAndSubmitButton(formElement);
 
   getInputListAndSubmitButton(formElement).inputlist.forEach(input => {
-    input.classList.remove('input_error');
+    input.classList.remove(config.inputErrorClass);
   })
 }
 
@@ -59,9 +83,9 @@ function setEvenetListeners(formElement) {
 }
 
 
-function getInputListAndSubmitButton(formElement) {
-  const inputlist = Array.from(formElement.querySelectorAll('.form__input'));
-  const submitButton = formElement.querySelector('.button_type_submit');
+function getInputListAndSubmitButton(formElement, config) {
+  const inputlist = Array.from(formElement.querySelectorAll(config.inputSelector));
+  const submitButton = formElement.querySelector(config.submitButtonSelector);
   toggleButtonState(submitButton, inputlist);
   return {
     inputlist,
