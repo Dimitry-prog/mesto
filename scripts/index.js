@@ -47,7 +47,6 @@ profileEditButton.addEventListener('click', function() {
   activityInput.value = profileActivity.textContent;
   openPopUp(popUpProfile);
   resetImputsErrorMessage(popUpProfile, profileFormConfig);
-  setEvenetListeners(popUpProfile, profileFormConfig);
 });
 
 popUpProfileForm.addEventListener('submit', function(event) {
@@ -62,7 +61,6 @@ popUpProfileForm.addEventListener('submit', function(event) {
 cardAddButton.addEventListener('click', function() {
   openPopUp(popUpCard);
   resetImputsErrorMessage(popUpCard, addFormConfig);
-  setEvenetListeners(popUpCard, addFormConfig);
   console.log(addFormConfig.formSelector);
 });
 
@@ -96,8 +94,8 @@ function createCard(title, link) {
   return elementsItem;
 }
 
-function addCard(...par) {
-  const newCard = createCard(...par);
+function addCard(place, link) {
+  const newCard = createCard(place, link);
   renderCard(elementsList, newCard);
 }
 
@@ -135,4 +133,5 @@ function closeAnyPopUp() {
 }
 closeAnyPopUp();
 
-//enableFormValidation(addFormConfig);
+enableFormValidation(profileFormConfig);
+enableFormValidation(addFormConfig);

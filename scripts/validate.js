@@ -32,7 +32,7 @@ function hideErrorMessage(formElement, inputElement, config) {
   inputElement.classList.remove(config.inputErrorClass);
 }
 
-function hasValidInput(inputlist, config) {
+function hasValidInput(inputlist) {
   return inputlist.some(input => {
     return !input.validity.valid
   })
@@ -91,9 +91,7 @@ function getInputListAndSubmitButton(formElement, config) {
   }
 }
 
-
 function enableFormValidation(config) {
-  setEvenetListeners(config.formSelector, config);
+  const form = document.querySelector(config.formSelector);
+  setEvenetListeners(form, config);
 }
-
-console.log(addFormConfig.formSelector);
