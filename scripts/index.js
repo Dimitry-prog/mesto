@@ -64,6 +64,7 @@ popUpProfileForm.addEventListener('submit', function(event) {
 cardAddButton.addEventListener('click', function() {
   openPopUp(popUpCard);
   resetImputsErrorMessage(popUpCard, addFormConfig);
+  clearFormFields(popUpCardForm);
 });
 
 popUpCardForm.addEventListener('submit', function(event) {
@@ -123,11 +124,9 @@ function closeAnyPopUp() {
   popUps.forEach(popUp => {
     popUp.addEventListener('mousedown', function(event) {
       if (event.target.classList.contains('pop-up_opened')) {
-        clearFormFields(popUpCardForm);
         closePopUp(popUp);
       }
       if (event.target.classList.contains('pop-up__close')) {
-        clearFormFields(popUpCardForm);
         closePopUp(popUp);
       }
     });

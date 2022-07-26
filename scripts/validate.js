@@ -73,7 +73,7 @@ function setEvenetListeners(formElement, config) {
   getInputListAndSubmitButton(formElement, config);
 
   getInputListAndSubmitButton(formElement, config).inputlist.forEach(input => {
-    input.addEventListener('input', function() {
+    input.addEventListener('input', function () {
       checkInputValidity(formElement, input, config);
       getInputListAndSubmitButton(formElement, config).toggleButtonState(getInputListAndSubmitButton(formElement, config).submitButton, getInputListAndSubmitButton(formElement, config).inputlist, config);
     });
