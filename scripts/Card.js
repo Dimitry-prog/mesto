@@ -1,8 +1,3 @@
-const popUpImg = document.querySelector('.pop-up_img');
-const popUpPicture = popUpImg.querySelector('.pop-up__picture');
-const popUpText = popUpImg.querySelector('.pop-up__text');
-
-
 export default class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
@@ -29,6 +24,10 @@ export default class Card {
   }
 
   _handlePopUpBigImg() {
+    const popUpImg = document.querySelector('.pop-up_img');
+    const popUpPicture = popUpImg.querySelector('.pop-up__picture');
+    const popUpText = popUpImg.querySelector('.pop-up__text');
+
     popUpPicture.setAttribute('src', this._link);
     popUpPicture.setAttribute('alt', this._name);
     popUpText.textContent = this._name;
