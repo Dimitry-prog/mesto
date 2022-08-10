@@ -18,6 +18,14 @@ export default class FormValidator {
     inputElement.classList.remove(this._config.inputErrorClass);
   }
 
+  _checkInputValidity(inputElement) {
+    if (!inputElement.validity.valid) {
+      this._showErrorMessage(inputElement);
+    } else {
+      this._hideErrorMessage(inputElement);
+    }
+  }
+
   _hasValidInput(inputlist) {
     return inputlist.some(input => {
       return !input.validity.valid
@@ -34,15 +42,7 @@ export default class FormValidator {
     }
   }
 
-  _checkInputValidity(inputElement) {
-    if (!inputElement.validity.valid) {
-      this._showErrorMessage(inputElement);
-    } else {
-      this._hideErrorMessage(inputElement);
-    }
-  }
-
-  _resetImputsErrorMessage() {
+  resetImputsErrorMessage() {
     const errors = Array.from(this._formElement.querySelectorAll(this._config.formErrorMessageSelector));
     const inputlist = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
     const submitButton = this._formElement.querySelector(this._config.submitButtonSelector);
@@ -69,6 +69,5 @@ export default class FormValidator {
 
   enableValidation() {
     this._setEvenetListeners();
-    this._resetImputsErrorMessage();
   }
 }

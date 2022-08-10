@@ -1,3 +1,9 @@
+import { openPopUp } from './utils/utils.js';
+
+const popUpImg = document.querySelector('.pop-up_img');
+const popUpPicture = popUpImg.querySelector('.pop-up__picture');
+const popUpText = popUpImg.querySelector('.pop-up__text');
+
 export default class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
@@ -24,14 +30,10 @@ export default class Card {
   }
 
   _handlePopUpBigImg() {
-    const popUpImg = document.querySelector('.pop-up_img');
-    const popUpPicture = popUpImg.querySelector('.pop-up__picture');
-    const popUpText = popUpImg.querySelector('.pop-up__text');
-
     popUpPicture.setAttribute('src', this._link);
     popUpPicture.setAttribute('alt', this._name);
     popUpText.textContent = this._name;
-    popUpImg.classList.add('pop-up_opened');
+    openPopUp(popUpImg);
   }
 
   _setEventListeners() {
@@ -50,8 +52,9 @@ export default class Card {
     this._element = this._getTemplateCardElement();
     this._setEventListeners();
 
-    this._element.querySelector('.card__img').src = this._link;
-    this._element.querySelector('.card__img').alt = this._name;
+    const cardImg = this._element.querySelector('.card__img');
+    cardImg.src = this._link;
+    cardImg.alt = this._name;
 
     this._element.querySelector('.card__title').textContent = this._name;
 
