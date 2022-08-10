@@ -14,11 +14,11 @@ const validationConfig = {
 
 const popUpProfile = document.querySelector('.pop-up_profile');
 const popUpProfileForm = popUpProfile.querySelector('.form_type_profile');
-const enableProfileValidation = new FormValidator(validationConfig, popUpProfileForm);
+const validatorEditProfileForm = new FormValidator(validationConfig, popUpProfileForm);
 
 const popUpCard = document.querySelector('.pop-up_card');
 const popUpCardForm = popUpCard.querySelector('.form_type_card');
-const enableAddValidation = new FormValidator(validationConfig, popUpCardForm);
+const validatorAddCardForm = new FormValidator(validationConfig, popUpCardForm);
 
 const elementsList = document.querySelector('.elements__list');
 
@@ -39,10 +39,6 @@ const allPopUps = document.querySelectorAll('.pop-up');
 
 const createCard = (data, templateSelector) => {
   return new Card(data, templateSelector);
-}
-
-const resetInputsErrorAndButtonState = (element) => {
-  element.resetImputsErrorMessage();
 }
 
 const renderInitialCards = () => {
@@ -73,7 +69,7 @@ closePopupsByOverlayClick();
 profileEditButton.addEventListener('click', function () {
   nameInput.value = profileName.textContent;
   activityInput.value = profileActivity.textContent;
-  resetInputsErrorAndButtonState(enableProfileValidation);
+  validatorEditProfileForm.resetImputsErrorMessage();
   openPopUp(popUpProfile);
 });
 
@@ -87,7 +83,7 @@ popUpProfileForm.addEventListener('submit', function (event) {
 /* CARD */
 
 cardAddButton.addEventListener('click', function () {
-  resetInputsErrorAndButtonState(enableAddValidation);
+  validatorAddCardForm.resetImputsErrorMessage();
   openPopUp(popUpCard);
   clearFormFields(popUpCardForm);
 });
@@ -109,5 +105,5 @@ function clearFormFields(formName) {
   formName.reset();
 }
 
-enableProfileValidation.enableValidation();
-enableAddValidation.enableValidation();
+validatorEditProfileForm.enableValidation();
+validatorAddCardForm.enableValidation();
