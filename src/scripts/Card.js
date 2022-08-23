@@ -31,21 +31,21 @@ export default class Card {
     this._element.querySelector('.card__delete').addEventListener('click', () => {
       this._handleDeleteCard();
     });
-    this._element.querySelector('.card__img').addEventListener('click', () => {
+    this._cardImg.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
   }
 
   generateCard() {
     this._element = this._getTemplateCardElement();
-    this._setEventListeners();
 
-    const cardImg = this._element.querySelector('.card__img');
+    this._cardImg = this._element.querySelector('.card__img');
     cardImg.src = this._link;
     cardImg.alt = this._name;
 
     this._element.querySelector('.card__title').textContent = this._name;
 
+    this._setEventListeners();
     return this._element;
   }
 }
