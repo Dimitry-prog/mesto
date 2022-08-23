@@ -1,14 +1,9 @@
-import { openPopUp } from './utils/utils.js';
-
-const popUpImg = document.querySelector('.pop-up_img');
-const popUpPicture = popUpImg.querySelector('.pop-up__picture');
-const popUpText = popUpImg.querySelector('.pop-up__text');
-
 export default class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplateCardElement() {
@@ -29,13 +24,6 @@ export default class Card {
     this._element.remove();
   }
 
-  _handlePopUpBigImg() {
-    popUpPicture.setAttribute('src', this._link);
-    popUpPicture.setAttribute('alt', this._name);
-    popUpText.textContent = this._name;
-    openPopUp(popUpImg);
-  }
-
   _setEventListeners() {
     this._element.querySelector('.card__like').addEventListener('click', () => {
       this._handleToggleLikeCard();
@@ -44,7 +32,7 @@ export default class Card {
       this._handleDeleteCard();
     });
     this._element.querySelector('.card__img').addEventListener('click', () => {
-      this._handlePopUpBigImg();
+      this._handleCardClick(this._name, this._link);
     });
   }
 
