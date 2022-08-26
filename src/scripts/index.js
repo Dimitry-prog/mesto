@@ -1,7 +1,6 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
-import Popup from './Popup.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
@@ -12,9 +11,10 @@ const validatorEditProfileForm = new FormValidator(validationConfig, popUpProfil
 
 const validatorAddCardForm = new FormValidator(validationConfig, popUpCardForm);
 
+const imgPopup = new PopupWithImage(popUpImg);
+
 const handleCardClick = (name, link) => {
-  const imgPopup = new PopupWithImage(popUpImg, name, link);
-  imgPopup.open(popUpPicture, popUpText);
+  imgPopup.open(popUpPicture, popUpText, name, link);
 }
 
 const createCard = (data, templateSelector, handleCardClick) => {
