@@ -5,7 +5,7 @@ import Popup from './Popup.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
-import { initialCards, validationConfig, popUpProfileForm, popUpCardForm, elementsList, allPopUps, popUpProfile, profileName, profileActivity, profileEditButton, popUpCard, cardAddButton, popUpImg, nameInput, activityInput, popUpPicture, popUpText } from './utils/constants.js';
+import { initialCards, validationConfig, popUpProfileForm, popUpCardForm, elementsList, popUpProfile, initialProfileInputsValue, profileEditButton, popUpCard, cardAddButton, popUpImg, nameInput, activityInput, popUpPicture, popUpText } from './utils/constants.js';
 import '../pages/index.css';
 
 const validatorEditProfileForm = new FormValidator(validationConfig, popUpProfileForm);
@@ -18,37 +18,24 @@ const handleCardClick = (name, link) => {
 }
 
 const createCard = (data, templateSelector, handleCardClick) => {
-  return new Card(data, templateSelector, handleCardClick);
+  const cardElement = new Card(data, templateSelector, handleCardClick);
+  return cardElement.generateCard();
 }
 
 const renderInitialCards = new Section({
   items: initialCards,
   renderer: (item) => {
-    const cardElement = createCard(item, '#template-card', handleCardClick);
-    const card = cardElement.generateCard();
+    const card = createCard(item, '#template-card', handleCardClick);
     renderInitialCards.addItem(card)
   }
 }, elementsList);
 renderInitialCards.renderItems();
 
-const closePopupsByOverlayClick = () => {
-  allPopUps.forEach(popUp => {
-    const popupElement = new Popup(popUp);
-    popupElement.setEventListeners();
-  });
-}
-closePopupsByOverlayClick();
-
 /* PROFILE */
 
 const profilePopup = new Popup(popUpProfile);
 
-const profileInputsValue = {
-  name: profileName,
-  activity: profileActivity
-}
-
-const profileValues = new UserInfo(profileInputsValue);
+const profileValues = new UserInfo(initialProfileInputsValue);
 
 profileEditButton.addEventListener('click', function () {
   const { name, activity } = profileValues.getUserInfo();
@@ -60,9 +47,7 @@ profileEditButton.addEventListener('click', function () {
 
 const profileFormPopup = new PopupWithForm(popUpProfile, {
   handleSubmit: (values) => {
-    const { name, activity } = profileValues.setUserInfo(values);
-    profileName.textContent = name;
-    profileActivity.textContent = activity;
+    profileValues.setUserInfo(values);
   }
 });
 profileFormPopup.setEventListeners();
@@ -84,8 +69,8 @@ const addCardFormPopup = new PopupWithForm(popUpCard, {
       name: place,
       link,
     }
-    const cardElement = createCard(data, '#template-card', handleCardClick);
-    elementsList.prepend(cardElement.generateCard());
+    const card = createCard(data, '#template-card', handleCardClick);
+    elementsList.prepend(card);
   }
 });
 addCardFormPopup.setEventListeners();

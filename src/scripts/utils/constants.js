@@ -49,3 +49,8 @@ export const nameInput = popUpProfileForm.querySelector('.form__input_type_name'
 export const activityInput = popUpProfileForm.querySelector('.form__input_type_activity');
 export const cardAddButton = document.querySelector('.profile__add');
 export const allPopUps = document.querySelectorAll('.pop-up');
+
+export const initialProfileInputsValue = {
+  name: profileName,
+  activity: profileActivity
+}

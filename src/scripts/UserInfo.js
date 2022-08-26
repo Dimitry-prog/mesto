@@ -1,3 +1,5 @@
+import { profileName, profileActivity } from "./utils/constants";
+
 export default class UserInfo {
   constructor(data) {
     this._name = data.name;
@@ -11,9 +13,7 @@ export default class UserInfo {
   }
 
   setUserInfo(data) {
-    return {
-      name: data.name,
-      activity: data.activity,
-    }
+    profileName.textContent = data.name;
+    profileActivity.textContent = data.activity;
   }
 }
