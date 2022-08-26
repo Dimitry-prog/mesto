@@ -33,8 +33,6 @@ renderInitialCards.renderItems();
 
 /* PROFILE */
 
-const profilePopup = new Popup(popUpProfile);
-
 const profileValues = new UserInfo(initialProfileInputsValue);
 
 profileEditButton.addEventListener('click', function () {
@@ -42,23 +40,21 @@ profileEditButton.addEventListener('click', function () {
   nameInput.value = name.textContent;
   activityInput.value = activity.textContent;
   validatorEditProfileForm.resetImputsErrorMessage();
-  profilePopup.open();
+  profileFormPopup.open();
 });
 
 const profileFormPopup = new PopupWithForm(popUpProfile, {
-  handleSubmit: (values) => {
-    profileValues.setUserInfo(values);
+  handleSubmit: (formValues) => {
+    profileValues.setUserInfo(formValues);
   }
 });
 profileFormPopup.setEventListeners();
 
 /* CARD */
 
-const addCardPopup = new Popup(popUpCard);
-
 cardAddButton.addEventListener('click', function () {
   validatorAddCardForm.resetImputsErrorMessage();
-  addCardPopup.open();
+  addCardFormPopup.open();
   addCardFormPopup.resetForm();
 });
 

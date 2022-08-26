@@ -12,8 +12,8 @@ export default class UserInfo {
     }
   }
 
-  setUserInfo(data) {
-    profileName.textContent = data.name;
-    profileActivity.textContent = data.activity;
+  setUserInfo(formValues) {
+    profileName.textContent = formValues.name;
+    profileActivity.textContent = formValues.activity;
   }
 }
