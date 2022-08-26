@@ -8,17 +8,13 @@ export default class Popup {
   open() {
     this._popupElement.classList.add('pop-up_opened');
     pageElement.classList.add('page_type_hidden');
-    document.addEventListener('keydown', (event) => {
-      this._handleEscClose(event);
-    });
+    document.addEventListener('keydown', this._handleEscClose);
   }
 
   close() {
     this._popupElement.classList.remove('pop-up_opened');
     pageElement.classList.remove('page_type_hidden');
-    document.removeEventListener('keydown', (event) => {
-      this._handleEscClose(event);
-    });
+    document.removeEventListener('keydown', this._handleEscClose);
   }
 
   _handleEscClose(event) {
