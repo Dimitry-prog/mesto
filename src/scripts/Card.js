@@ -40,8 +40,8 @@ export default class Card {
     this._element = this._getTemplateCardElement();
 
     this._cardImg = this._element.querySelector('.card__img');
-    cardImg.src = this._link;
-    cardImg.alt = this._name;
+    this._cardImg.src = this._link;
+    this._cardImg.alt = this._name;
 
     this._element.querySelector('.card__title').textContent = this._name;
 
