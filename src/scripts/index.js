@@ -5,7 +5,7 @@ import Popup from './Popup.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
-import { initialCards, validationConfig, popUpProfileForm, popUpCardForm, elementsList, allPopUps, popUpProfile, profileName, profileActivity, profileEditButton, popUpCard, cardAddButton, popUpImg, nameInput, activityInput } from './utils/constants.js';
+import { initialCards, validationConfig, popUpProfileForm, popUpCardForm, elementsList, allPopUps, popUpProfile, profileName, profileActivity, profileEditButton, popUpCard, cardAddButton, popUpImg, nameInput, activityInput, popUpPicture, popUpText } from './utils/constants.js';
 import '../pages/index.css';
 
 const validatorEditProfileForm = new FormValidator(validationConfig, popUpProfileForm);
@@ -14,7 +14,7 @@ const validatorAddCardForm = new FormValidator(validationConfig, popUpCardForm);
 
 const handleCardClick = (name, link) => {
   const imgPopup = new PopupWithImage(popUpImg, name, link);
-  imgPopup.open();
+  imgPopup.open(popUpPicture, popUpText);
 }
 
 const createCard = (data, templateSelector, handleCardClick) => {
