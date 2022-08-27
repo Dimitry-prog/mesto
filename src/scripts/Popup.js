@@ -3,6 +3,7 @@ import { pageElement } from './utils/constants.js';
 export default class Popup {
   constructor(popupElement) {
     this._popupElement = popupElement;
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   open() {
