@@ -4,6 +4,7 @@ import Section from '../scripts/components/Section.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
+import Api from '../scripts/components/Api.js';
 import { initialCards, validationConfig, popUpProfileForm, popUpCardForm, elementsList, popUpProfile, initialProfileInputsValue, profileEditButton, popUpCard, cardAddButton, popUpImg, nameInput, activityInput } from '../scripts/utils/constants.js';
 import '../pages/index.css';
 
@@ -74,4 +75,3 @@ addCardFormPopup.setEventListeners();
 
 validatorEditProfileForm.enableValidation();
 validatorAddCardForm.enableValidation();
-
