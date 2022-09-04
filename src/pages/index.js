@@ -5,7 +5,7 @@ import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import Api from '../scripts/components/Api.js';
-import { initialCards, validationConfig, popUpProfileForm, popUpCardForm, elementsList, popUpProfile, initialProfileInputsValue, profileEditButton, popUpCard, cardAddButton, popUpImg, nameInput, activityInput } from '../scripts/utils/constants.js';
+import { initialCards, validationConfig, popUpProfileForm, popUpCardForm, elementsList, popUpProfile, initialProfileInputsValue, profileEditButton, popUpCard, cardAddButton, popUpImg, nameInput, activityInput, avatarEditButton, popUpAvatar, popUpAvatarForm, profileImg } from '../scripts/utils/constants.js';
 import '../pages/index.css';
 
 const validatorEditProfileForm = new FormValidator(validationConfig, popUpProfileForm);
@@ -75,3 +75,23 @@ addCardFormPopup.setEventListeners();
 
 validatorEditProfileForm.enableValidation();
 validatorAddCardForm.enableValidation();
+
+/* AVATAR */
+
+const validatorAvatarForm = new FormValidator(validationConfig, popUpAvatarForm);
+validatorAvatarForm.enableValidation();
+
+const avatarFormPopup = new PopupWithForm(popUpAvatar, {
+  handleSubmit: ({ avatar }) => {
+    profileImg.src = avatar;
+  }
+});
+avatarFormPopup.setEventListeners();
+
+avatarEditButton.addEventListener('click', () => {
+  validatorAvatarForm.resetImputsErrorMessage();
+  avatarFormPopup.open();
+});
+
+/* CARD DELETE */
+
