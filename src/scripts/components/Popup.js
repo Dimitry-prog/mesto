@@ -1,4 +1,4 @@
-import { pageElement } from './utils/constants.js';
+import { pageElement } from '../utils/constants.js';
 
 export default class Popup {
   constructor(popupElement) {
