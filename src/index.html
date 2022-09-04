@@ -14,7 +14,11 @@
   </header>
   <main class="main page__main">
     <section class="profile main__profile">
-      <img src="<%=require('./images/profile__img.jpg')%>" alt="Жак-Ив Кусто" class="profile__img">
+      <div class="profile__avatar">
+        <img src="<%=require('./images/profile__img.jpg')%>" alt="Жак-Ив Кусто" class="profile__img">
+        <button class="button  button_type_avatar" type="button" aria-label="editAvatar">
+        </button>
+      </div>
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <button class="button profile__edit button_type_edit" type="button" aria-label="EditProfile">
@@ -81,6 +85,31 @@
       </figure>
     </div>
   </div>
+  <div class="pop-up pop-up_delete">
+    <div class="pop-up__overlay pop-up__overlay_type_delete">
+      <button class="button button_type_close-img pop-up__close" type="button" aria-label="ClosePopUp">
+      </button>
+      <form class="form form_type_delete pop-up__form" name="pop-up-form" novalidate>
+        <h3 class="form__title">Вы уверены?</h3>
+        <button type="submit" class="button button_type_submit">Да</button>
+      </form>
+    </div>
+  </div>
+  <div class="pop-up pop-up_avatar">
+    <div class="pop-up__overlay pop-up__overlay_type_avatar">
+      <button class="button button_type_close-img pop-up__close" type="button" aria-label="ClosePopUp">
+      </button>
+      <form class="form form_type_avatar pop-up__form" name="pop-up-form" novalidate>
+        <h3 class="form__title">Обновить аватар</h3>
+        <label class="form__label">
+          <input type="url" class="input form__input form__input_type_avatar" name="avatar" required id="avatar"
+            placeholder="Ссылка на картинку">
+          <span class="form__error-message activity-error"></span>
+        </label>
+        <button type="submit" class="button button_type_submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
 
   <template id="template-card">
     <li class="elements__item">
@@ -89,8 +118,11 @@
         <img src="<%=require('./images/delete.svg')%>" alt="удалить" class="card__delete">
         <div class="card__footer">
           <h2 class="card__title"></h2>
-          <button class="button button_type_like card__like" type="button" aria-label="CardLike">
-          </button>
+          <div class="card__stats">
+            <button class="button button_type_like card__like" type="button" aria-label="CardLike">
+            </button>
+            <p class="card__quantity">0</p>
+          </div>
         </div>
       </div>
     </li>
