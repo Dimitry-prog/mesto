@@ -52,7 +52,7 @@ export const allPopUps = document.querySelectorAll('.pop-up');
 
 export const initialProfileInputsValue = {
   name: profileName,
-  activity: profileActivity
+  about: profileActivity
 }
 
 export const popUpAvatar = document.querySelector('.pop-up_avatar');
@@ -62,4 +62,3 @@ export const profileImg = document.querySelector('.profile__img');
 export const popUpDelete = document.querySelector('.pop-up_delete');
 export const popUpDeleteForm = popUpDelete.querySelector('.form_type_delete');
 
-export const carDel = document.querySelector('.card__delete');

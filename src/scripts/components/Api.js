@@ -3,10 +3,10 @@ export default class Api {
 
   }
 
-  getUserInfo() {
+  getUsersInfo() {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-50/users/me', {
       headers: {
-        authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6'
+        authorization: 'aaaf8a01-66a7-402b-b4c7-63b2ef616c45'
       }
     })
       .then(res => {
@@ -21,11 +21,13 @@ export default class Api {
   getInitCards() {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-50/cards', {
       headers: {
-        authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6'
+        authorization: 'aaaf8a01-66a7-402b-b4c7-63b2ef616c45',
+        'Content-Type': 'application/json'
       }
     })
       .then(res => {
         if (res.ok) {
+          console.log('api', res);
           return res.json();
         }
 
@@ -37,12 +39,12 @@ export default class Api {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-50/users/me', {
       method: 'PATCH',
       headers: {
-        authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
+        authorization: 'aaaf8a01-66a7-402b-b4c7-63b2ef616c45',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         name: data.name,
-        about: data.activity
+        about: data.about
       }),
     })
       .then(res => {
@@ -58,7 +60,7 @@ export default class Api {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-50/cards', {
       method: 'POST',
       headers: {
-        authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
+        authorization: 'aaaf8a01-66a7-402b-b4c7-63b2ef616c45',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -78,7 +80,7 @@ export default class Api {
   showQuantityLikes() {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-50/cards', {
       headers: {
-        authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6'
+        authorization: 'aaaf8a01-66a7-402b-b4c7-63b2ef616c45'
       }
     })
       .then(res => {
@@ -90,19 +92,62 @@ export default class Api {
       });
   }
 
-  deleteCard() {
-    console.log('result');
+  deleteCard(id) {
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort-50/cards/${id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: 'aaaf8a01-66a7-402b-b4c7-63b2ef616c45',
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   }
 
-  toggleLike() {
-    console.log('result');
+  addLikeCard(id) {
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort-50/cards/${id}/likes`, {
+      method: 'PUT',
+      headers: {
+        authorization: 'aaaf8a01-66a7-402b-b4c7-63b2ef616c45',
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  }
+
+  removeLikeCard(id) {
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort-50/cards/${id}/likes`, {
+      method: 'DELETE',
+      headers: {
+        authorization: 'aaaf8a01-66a7-402b-b4c7-63b2ef616c45',
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   }
 
   patchAvatar(linkAvatar) {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-50/users/me/avatar', {
       method: 'PATCH',
       headers: {
-        authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
+        authorization: 'aaaf8a01-66a7-402b-b4c7-63b2ef616c45',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({

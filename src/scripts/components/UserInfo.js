@@ -3,17 +3,17 @@ import { profileName, profileActivity } from '../utils/constants.js';
 export default class UserInfo {
   constructor(data) {
     this._name = data.name;
-    this._activity = data.activity;
+    this._about = data.about;
   }
   getUserInfo() {
     return {
       name: this._name,
-      activity: this._activity,
+      about: this._about,
     }
   }
 
   setUserInfo(formValues) {
     profileName.textContent = formValues.name;
-    profileActivity.textContent = formValues.activity;
+    profileActivity.textContent = formValues.about;
   }
 }

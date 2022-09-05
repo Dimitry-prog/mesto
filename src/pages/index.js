@@ -5,8 +5,10 @@ import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import Api from '../scripts/components/Api.js';
-import { initialCards, validationConfig, popUpProfileForm, popUpCardForm, elementsList, popUpProfile, initialProfileInputsValue, profileEditButton, popUpCard, cardAddButton, popUpImg, nameInput, activityInput, avatarEditButton, popUpAvatar, popUpAvatarForm, profileImg } from '../scripts/utils/constants.js';
+import { initialCards, validationConfig, popUpProfileForm, popUpCardForm, elementsList, popUpProfile, initialProfileInputsValue, profileEditButton, popUpCard, cardAddButton, popUpImg, nameInput, activityInput, avatarEditButton, popUpAvatar, popUpAvatarForm, profileImg, popUpDelete, profileName, profileActivity } from '../scripts/utils/constants.js';
 import '../pages/index.css';
+
+const api = new Api();
 
 const validatorEditProfileForm = new FormValidator(validationConfig, popUpProfileForm);
 
@@ -19,15 +21,20 @@ const handleCardClick = (name, link) => {
   imgPopup.open(name, link);
 }
 
-const createCard = (data, templateSelector, handleCardClick) => {
-  const cardElement = new Card(data, templateSelector, handleCardClick);
+const handleConfirmCardDelete = (delCard) => {
+  deleteFormPopup.open()
+  console.log(delCard);
+}
+
+const createCard = (data, templateSelector, handleCardClick, handleConfirmCardDelete) => {
+  const cardElement = new Card(data, templateSelector, handleCardClick, handleConfirmCardDelete);
   return cardElement.generateCard();
 }
 
 const renderInitialCards = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = createCard(item, '#template-card', handleCardClick);
+    const card = createCard(item, '#template-card', handleCardClick, handleConfirmCardDelete);
     renderInitialCards.addItem(card)
   }
 }, elementsList);
@@ -38,16 +45,26 @@ renderInitialCards.renderItems();
 const profileValues = new UserInfo(initialProfileInputsValue);
 
 profileEditButton.addEventListener('click', function () {
-  const { name, activity } = profileValues.getUserInfo();
+  const { name, about } = profileValues.getUserInfo();
   nameInput.value = name.textContent;
-  activityInput.value = activity.textContent;
+  activityInput.value = about.textContent;
   validatorEditProfileForm.resetImputsErrorMessage();
   profileFormPopup.open();
 });
 
 const profileFormPopup = new PopupWithForm(popUpProfile, {
   handleSubmit: (formValues) => {
-    profileValues.setUserInfo(formValues);
+    api.patchProfile(formValues)
+      .then(res => {
+        const data = {
+          name: res.name,
+          about: res.about,
+        }
+        profileValues.setUserInfo(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 });
 profileFormPopup.setEventListeners();
@@ -67,7 +84,7 @@ const addCardFormPopup = new PopupWithForm(popUpCard, {
       name: place,
       link,
     }
-    const card = createCard(data, '#template-card', handleCardClick);
+    const card = createCard(data, '#template-card', handleCardClick, handleConfirmCardDelete);
     elementsList.prepend(card);
   }
 });
@@ -95,3 +112,31 @@ avatarEditButton.addEventListener('click', () => {
 
 /* CARD DELETE */
 
+const deleteFormPopup = new PopupWithForm(popUpDelete, {
+  handleSubmit: () => {
+
+  }, handleConfirmCardDelete: (carDel) => {
+    carDel.remove()
+  }
+});
+deleteFormPopup.setEventListeners();
+
+
+
+api.getInitCards()
+  .then(res => {
+    console.log(res);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
+api.getUsersInfo()
+  .then(res => {
+    const { name, about } = res;
+    profileName.textContent = name;
+    profileActivity.textContent = about;
+  })
+  .catch(err => {
+    console.log(err);
+  });
