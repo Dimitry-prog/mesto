@@ -5,7 +5,7 @@ import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import Api from '../scripts/components/Api.js';
-import { initialCards, validationConfig, popUpProfileForm, popUpCardForm, elementsList, popUpProfile, initialProfileInputsValue, profileEditButton, popUpCard, cardAddButton, popUpImg, nameInput, activityInput, avatarEditButton, popUpAvatar, popUpAvatarForm, profileImg, popUpDelete, profileName, profileActivity } from '../scripts/utils/constants.js';
+import { validationConfig, popUpProfileForm, popUpCardForm, elementsList, popUpProfile, initialProfileInputsValue, profileEditButton, popUpCard, cardAddButton, popUpImg, nameInput, activityInput, avatarEditButton, popUpAvatar, popUpAvatarForm, profileImg, popUpDelete, profileName, profileActivity } from '../scripts/utils/constants.js';
 import '../pages/index.css';
 
 const api = new Api();
@@ -31,14 +31,20 @@ const createCard = (data, templateSelector, handleCardClick, handleConfirmCardDe
   return cardElement.generateCard();
 }
 
-const renderInitialCards = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const card = createCard(item, '#template-card', handleCardClick, handleConfirmCardDelete);
-    renderInitialCards.addItem(card)
-  }
-}, elementsList);
-renderInitialCards.renderItems();
+api.getInitCards()
+  .then(res => {
+    const renderInitialCards = new Section({
+      items: res,
+      renderer: (item) => {
+        const card = createCard(item, '#template-card', handleCardClick, handleConfirmCardDelete);
+        renderInitialCards.addItem(card)
+      }
+    }, elementsList);
+    renderInitialCards.renderItems();
+  })
+  .catch(err => {
+    console.log(err);
+  });
 
 /* PROFILE */
 
@@ -84,6 +90,13 @@ const addCardFormPopup = new PopupWithForm(popUpCard, {
       name: place,
       link,
     }
+    api.postNewCard(data)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
     const card = createCard(data, '#template-card', handleCardClick, handleConfirmCardDelete);
     elementsList.prepend(card);
   }
@@ -123,13 +136,7 @@ deleteFormPopup.setEventListeners();
 
 
 
-api.getInitCards()
-  .then(res => {
-    console.log(res);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+
 
 api.getUsersInfo()
   .then(res => {

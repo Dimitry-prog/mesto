@@ -56,7 +56,7 @@ export default class Api {
       });
   }
 
-  postNewCard(name, link) {
+  postNewCard(data) {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-50/cards', {
       method: 'POST',
       headers: {
@@ -64,8 +64,8 @@ export default class Api {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name,
-        link
+        name: data.name,
+        link: data.link
       }),
     })
       .then(res => {
