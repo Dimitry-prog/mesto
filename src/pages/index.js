@@ -92,7 +92,7 @@ const addCardFormPopup = new PopupWithForm(popUpCard, {
     }
     api.postNewCard(data)
       .then(res => {
-        console.log(res);
+
       })
       .catch(err => {
         console.log(err);
@@ -113,6 +113,13 @@ validatorAvatarForm.enableValidation();
 
 const avatarFormPopup = new PopupWithForm(popUpAvatar, {
   handleSubmit: ({ avatar }) => {
+    api.patchAvatar(avatar)
+      .then(res => {
+
+      })
+      .catch(err => {
+        console.log(err);
+      });
     profileImg.src = avatar;
   }
 });
@@ -134,15 +141,12 @@ const deleteFormPopup = new PopupWithForm(popUpDelete, {
 });
 deleteFormPopup.setEventListeners();
 
-
-
-
-
 api.getUsersInfo()
   .then(res => {
-    const { name, about } = res;
+    const { name, about, avatar } = res;
     profileName.textContent = name;
     profileActivity.textContent = about;
+    profileImg.src = avatar;
   })
   .catch(err => {
     console.log(err);

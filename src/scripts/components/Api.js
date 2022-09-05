@@ -27,7 +27,6 @@ export default class Api {
     })
       .then(res => {
         if (res.ok) {
-          console.log('api', res);
           return res.json();
         }
 
@@ -151,7 +150,7 @@ export default class Api {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        link: linkAvatar
+        avatar: linkAvatar
       }),
     })
       .then(res => {
