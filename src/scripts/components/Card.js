@@ -1,12 +1,13 @@
-import { api } from "../../pages";
+import { api, getQuantityLikes } from "../../pages";
 
 export default class Card {
-  constructor(data, templateSelector, handleCardClick, handleConfirmCardDelete) {
+  constructor(data, templateSelector, handleCardClick, handleConfirmCardDelete, cardId) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleConfirmCardDelete = handleConfirmCardDelete;
+    this._cardId = cardId;
   }
 
   _getTemplateCardElement() {
@@ -33,18 +34,18 @@ export default class Card {
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {
       if (!this._likeButton.classList.contains('card__like_active')) {
-        api.putLikeCard("6317426bfa63c20f60307214")
+        api.putLikeCard(this._cardId)
           .then(res => {
-
+            getQuantityLikes();
           })
           .catch(err => {
             console.log(err);
           });
         this._cardAddLike();
       } else {
-        api.removeLikeCard("6317426bfa63c20f60307214")
+        api.removeLikeCard(this._cardId)
           .then(res => {
-
+            getQuantityLikes();
           })
           .catch(err => {
             console.log(err);

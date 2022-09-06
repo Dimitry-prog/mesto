@@ -5,7 +5,7 @@ import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import Api from '../scripts/components/Api.js';
-import { validationConfig, popUpProfileForm, popUpCardForm, elementsList, popUpProfile, initialProfileInputsValue, profileEditButton, popUpCard, cardAddButton, popUpImg, nameInput, activityInput, avatarEditButton, popUpAvatar, popUpAvatarForm, profileImg, popUpDelete, profileName, profileActivity } from '../scripts/utils/constants.js';
+import { validationConfig, popUpProfileForm, popUpCardForm, elementsList, popUpProfile, initialProfileInputsValue, profileEditButton, popUpCard, cardAddButton, popUpImg, nameInput, activityInput, avatarEditButton, popUpAvatar, popUpAvatarForm, profileImg, popUpDelete, profileName, profileActivity, myId } from '../scripts/utils/constants.js';
 import '../pages/index.css';
 
 export const api = new Api();
@@ -26,8 +26,8 @@ const handleConfirmCardDelete = (delCard) => {
   console.log(delCard);
 }
 
-const createCard = (data, templateSelector, handleCardClick, handleConfirmCardDelete) => {
-  const cardElement = new Card(data, templateSelector, handleCardClick, handleConfirmCardDelete);
+const createCard = (data, templateSelector, handleCardClick, handleConfirmCardDelete, cardId) => {
+  const cardElement = new Card(data, templateSelector, handleCardClick, handleConfirmCardDelete, cardId);
   return cardElement.generateCard();
 }
 
@@ -36,7 +36,7 @@ api.getInitCards()
     const renderInitialCards = new Section({
       items: res,
       renderer: (item) => {
-        const card = createCard(item, '#template-card', handleCardClick, handleConfirmCardDelete);
+        const card = createCard(item, '#template-card', handleCardClick, handleConfirmCardDelete, item._id);
         renderInitialCards.addItem(card)
       }
     }, elementsList);
@@ -152,21 +152,28 @@ api.getUsersInfo()
     console.log(err);
   });
 
-api.getQuantityLikes()
-  .then(res => {
-    console.log(res);
-    const cardQuantityLikes = document.querySelectorAll('.card__quantity');
-    const cardLikes = res.map(elem => elem.likes);
+export const getQuantityLikes = () => {
+  api.getQuantityLikes()
+    .then(res => {
+      console.log(res);
+      const cardQuantityLikes = document.querySelectorAll('.card__quantity');
+      const buttonLikes = document.querySelectorAll('.card__like');
+      const cardLikes = res.map(elem => elem.likes);
 
-    cardLikes.forEach((elem, index) => {
-      if (elem.length > 0) {
+      cardLikes.forEach((elem, index) => {
         cardQuantityLikes[index].textContent = elem.length;
-      }
+
+        elem.forEach(item => {
+          if (item._id === myId) {
+            buttonLikes[index].classList.add('card__like_active');
+          }
+        });
+      });
+    })
+    .catch(err => {
+      console.log(err);
     });
-  })
-  .catch(err => {
-    console.log(err);
-  });
+}
 
-
+getQuantityLikes();
 

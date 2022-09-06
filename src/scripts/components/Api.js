@@ -115,9 +115,6 @@ export default class Api {
         authorization: 'aaaf8a01-66a7-402b-b4c7-63b2ef616c45',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        likes: 'Dimitry',
-      }),
     })
       .then(res => {
         if (res.ok) {
