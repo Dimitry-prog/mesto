@@ -151,3 +151,14 @@ api.getUsersInfo()
   .catch(err => {
     console.log(err);
   });
+
+api.getQuantityLikes()
+  .then(res => {
+    console.log(res);
+    const cardQuantityLikes = document.querySelectorAll('.card__quantity');
+    /*     cardQuantityLikes.forEach(elem => elem.textContent = res.likes.length) */
+    console.log(cardQuantityLikes);
+  })
+  .catch(err => {
+    console.log(err);
+  });

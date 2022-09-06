@@ -35,4 +35,4 @@ export const avatarEditButton = document.querySelector('.button_type_avatar');
 export const profileImg = document.querySelector('.profile__img');
 export const popUpDelete = document.querySelector('.pop-up_delete');
 export const popUpDeleteForm = popUpDelete.querySelector('.form_type_delete');
-
+export const cardQuantityLikes = document.querySelector('.card__quantity');

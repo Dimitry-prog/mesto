@@ -76,7 +76,7 @@ export default class Api {
       });
   }
 
-  showQuantityLikes() {
+  getQuantityLikes() {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-50/cards', {
       headers: {
         authorization: 'aaaf8a01-66a7-402b-b4c7-63b2ef616c45'
@@ -108,13 +108,16 @@ export default class Api {
       });
   }
 
-  addLikeCard(id) {
+  putLikeCard(id) {
     return fetch(`https://mesto.nomoreparties.co/v1/cohort-50/cards/${id}/likes`, {
       method: 'PUT',
       headers: {
         authorization: 'aaaf8a01-66a7-402b-b4c7-63b2ef616c45',
         'Content-Type': 'application/json'
       },
+      body: JSON.stringify({
+        likes: id,
+      }),
     })
       .then(res => {
         if (res.ok) {
