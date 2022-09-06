@@ -116,7 +116,7 @@ export default class Api {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        likes: id,
+        likes: 'Dimitry',
       }),
     })
       .then(res => {

@@ -156,8 +156,18 @@ api.getQuantityLikes()
   .then(res => {
     console.log(res);
     const cardQuantityLikes = document.querySelectorAll('.card__quantity');
-    /*     cardQuantityLikes.forEach(elem => elem.textContent = res.likes.length) */
+    /*     cardQuantityLikes.forEach(elem => elem.textContent = res.likes.length); */
+    console.log(res.id);
     console.log(cardQuantityLikes);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
+
+api.putLikeCard("6317426bfa63c20f60307214")
+  .then(res => {
+
   })
   .catch(err => {
     console.log(err);
