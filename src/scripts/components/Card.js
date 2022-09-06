@@ -1,3 +1,5 @@
+import { api } from "../../pages";
+
 export default class Card {
   constructor(data, templateSelector, handleCardClick, handleConfirmCardDelete) {
     this._name = data.name;
@@ -17,22 +19,45 @@ export default class Card {
     return cardElement;
   }
 
-  _handleToggleLikeCard() {
-    this._element.querySelector('.card__like').classList.toggle('card__like_active');
-  }
-
   _handleDeleteCard() {
     this._element.remove()
   }
 
+  _cardAddLike() {
+    this._likeButton.classList.add('card__like_active');
+  }
+  _cardDeleteLike() {
+    this._likeButton.classList.remove('card__like_active');
+  }
+
   _setEventListeners() {
-    this._element.querySelector('.card__like').addEventListener('click', () => {
-      this._handleToggleLikeCard();
+    this._likeButton.addEventListener('click', () => {
+      if (!this._likeButton.classList.contains('card__like_active')) {
+        api.putLikeCard("6317426bfa63c20f60307214")
+          .then(res => {
+
+          })
+          .catch(err => {
+            console.log(err);
+          });
+        this._cardAddLike();
+      } else {
+        api.removeLikeCard("6317426bfa63c20f60307214")
+          .then(res => {
+
+          })
+          .catch(err => {
+            console.log(err);
+          });
+        this._cardDeleteLike();
+      }
     });
+
     this._element.querySelector('.card__delete').addEventListener('click', () => {
       this._handleConfirmCardDelete(this._element);
       //this._handleDeleteCard();
     });
+
     this._cardImg.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
@@ -40,6 +65,8 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplateCardElement();
+
+    this._likeButton = this._element.querySelector('.card__like');
 
     this._cardImg = this._element.querySelector('.card__img');
     this._cardImg.src = this._link;
