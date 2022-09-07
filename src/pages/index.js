@@ -7,6 +7,7 @@ import UserInfo from '../scripts/components/UserInfo.js';
 import Api from '../scripts/components/Api.js';
 import { validationConfig, popUpProfileForm, popUpCardForm, elementsList, popUpProfile, initialProfileInputsValue, profileEditButton, popUpCard, cardAddButton, popUpImg, nameInput, activityInput, avatarEditButton, popUpAvatar, popUpAvatarForm, profileImg, popUpDelete, profileName, profileActivity, myId } from '../scripts/utils/constants.js';
 import '../pages/index.css';
+import PopupWithConfirmDelete from '../scripts/components/PopupWithConfirmDelete.js';
 
 export const api = new Api();
 
@@ -21,9 +22,8 @@ const handleCardClick = (name, link) => {
   imgPopup.open(name, link);
 }
 
-const handleConfirmCardDelete = (delCard) => {
+const handleConfirmCardDelete = () => {
   deleteFormPopup.open()
-  console.log(delCard);
 }
 
 const createCard = (data, templateSelector, handleCardClick, handleConfirmCardDelete, cardId, ownerId) => {
@@ -31,20 +31,23 @@ const createCard = (data, templateSelector, handleCardClick, handleConfirmCardDe
   return cardElement.generateCard();
 }
 
-api.getInitCards()
-  .then(res => {
-    const renderInitialCards = new Section({
-      items: res,
-      renderer: (item) => {
-        const card = createCard(item, '#template-card', handleCardClick, handleConfirmCardDelete, item._id, item.owner._id);
-        renderInitialCards.addItem(card);
-      }
-    }, elementsList);
-    renderInitialCards.renderItems();
-  })
-  .catch(err => {
-    console.log(err);
-  });
+const getCards = () => {
+  api.getInitCards()
+    .then(res => {
+      const renderInitialCards = new Section({
+        items: res,
+        renderer: (item) => {
+          const card = createCard(item, '#template-card', handleCardClick, handleConfirmCardDelete, item._id, item.owner._id);
+          renderInitialCards.addItem(card);
+        }
+      }, elementsList);
+      renderInitialCards.renderItems();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+getCards();
 
 /* PROFILE */
 
@@ -91,14 +94,12 @@ const addCardFormPopup = new PopupWithForm(popUpCard, {
       link,
     }
     api.postNewCard(data)
-      .then(res => {
-
-      })
       .catch(err => {
         console.log(err);
       });
     const card = createCard(data, '#template-card', handleCardClick, handleConfirmCardDelete);
     elementsList.prepend(card);
+    getCards();
   }
 });
 addCardFormPopup.setEventListeners();
@@ -114,9 +115,6 @@ validatorAvatarForm.enableValidation();
 const avatarFormPopup = new PopupWithForm(popUpAvatar, {
   handleSubmit: ({ avatar }) => {
     api.patchAvatar(avatar)
-      .then(res => {
-
-      })
       .catch(err => {
         console.log(err);
       });
@@ -132,12 +130,15 @@ avatarEditButton.addEventListener('click', () => {
 
 /* CARD DELETE */
 
-const deleteFormPopup = new PopupWithForm(popUpDelete, {
-  handleSubmit: () => {
+export const handleCardDelete = (id) => {
+  api.deleteCard(id)
+    .catch(err => {
+      console.log(err);
+    });
+}
 
-  }, handleConfirmCardDelete: (carDel) => {
-    carDel.remove()
-  }
+const deleteFormPopup = new PopupWithConfirmDelete(popUpDelete, {
+  handleCardDelete: handleCardDelete
 });
 deleteFormPopup.setEventListeners();
 
@@ -175,4 +176,5 @@ export const getQuantityLikes = () => {
     });
 }
 getQuantityLikes();
+
 

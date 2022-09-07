@@ -1,4 +1,4 @@
-import { api, getQuantityLikes } from "../../pages";
+import { api, getQuantityLikes, handleCardDelete } from "../../pages";
 import { myId } from "../utils/constants";
 
 export default class Card {
@@ -57,8 +57,9 @@ export default class Card {
     });
 
     this._cardDeleteButton.addEventListener('click', () => {
-      this._handleConfirmCardDelete(this._element);
+      this._handleConfirmCardDelete();
       //this._handleDeleteCard();
+      handleCardDelete(this._cardId);
     });
 
     this._cardImg.addEventListener('click', () => {
