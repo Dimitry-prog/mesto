@@ -26,8 +26,8 @@ const handleConfirmCardDelete = (delCard) => {
   console.log(delCard);
 }
 
-const createCard = (data, templateSelector, handleCardClick, handleConfirmCardDelete, cardId) => {
-  const cardElement = new Card(data, templateSelector, handleCardClick, handleConfirmCardDelete, cardId);
+const createCard = (data, templateSelector, handleCardClick, handleConfirmCardDelete, cardId, ownerId) => {
+  const cardElement = new Card(data, templateSelector, handleCardClick, handleConfirmCardDelete, cardId, ownerId);
   return cardElement.generateCard();
 }
 
@@ -36,8 +36,8 @@ api.getInitCards()
     const renderInitialCards = new Section({
       items: res,
       renderer: (item) => {
-        const card = createCard(item, '#template-card', handleCardClick, handleConfirmCardDelete, item._id);
-        renderInitialCards.addItem(card)
+        const card = createCard(item, '#template-card', handleCardClick, handleConfirmCardDelete, item._id, item.owner._id);
+        renderInitialCards.addItem(card);
       }
     }, elementsList);
     renderInitialCards.renderItems();
@@ -174,6 +174,5 @@ export const getQuantityLikes = () => {
       console.log(err);
     });
 }
-
 getQuantityLikes();
 

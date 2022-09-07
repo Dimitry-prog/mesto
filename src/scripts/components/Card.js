@@ -1,13 +1,15 @@
 import { api, getQuantityLikes } from "../../pages";
+import { myId } from "../utils/constants";
 
 export default class Card {
-  constructor(data, templateSelector, handleCardClick, handleConfirmCardDelete, cardId) {
+  constructor(data, templateSelector, handleCardClick, handleConfirmCardDelete, cardId, ownerId) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleConfirmCardDelete = handleConfirmCardDelete;
     this._cardId = cardId;
+    this._ownerId = ownerId;
   }
 
   _getTemplateCardElement() {
@@ -54,7 +56,7 @@ export default class Card {
       }
     });
 
-    this._element.querySelector('.card__delete').addEventListener('click', () => {
+    this._cardDeleteButton.addEventListener('click', () => {
       this._handleConfirmCardDelete(this._element);
       //this._handleDeleteCard();
     });
@@ -68,6 +70,11 @@ export default class Card {
     this._element = this._getTemplateCardElement();
 
     this._likeButton = this._element.querySelector('.card__like');
+
+    this._cardDeleteButton = this._element.querySelector('.card__delete');
+    if (this._ownerId !== myId) {
+      this._cardDeleteButton.remove()
+    }
 
     this._cardImg = this._element.querySelector('.card__img');
     this._cardImg.src = this._link;
