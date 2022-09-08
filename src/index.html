@@ -39,16 +39,16 @@
     <div class="pop-up__overlay">
       <button class="button button_type_close-profile pop-up__close" type="button" aria-label="ClosePopUp">
       </button>
-      <form class="form form_type_profile pop-up__form" name="pop-up-form" novalidate>
+      <form class="form form_type_profile pop-up__form" name="pop-up-form-profile" novalidate>
         <h3 class="form__title">Редактировать профиль</h3>
         <label class="form__label">
           <input type="text" class="input form__input form__input_type_name" name="name" required id="name"
-            minlength="2" maxlength="40">
+            minlength="2" maxlength="40" placeholder="Enter name">
           <span class="form__error-message name-error"></span>
         </label>
         <label class="form__label">
           <input type="text" class="input form__input form__input_type_activity" name="about" required id="about"
-            minlength="2" maxlength="200">
+            placeholder="Enter activity" minlength="2" maxlength="200">
           <span class="form__error-message about-error"></span>
         </label>
         <button type="submit" class="button button_type_submit">Сохранить</button>
@@ -59,7 +59,7 @@
     <div class="pop-up__overlay">
       <button class="button button_type_close-card pop-up__close" type="button" aria-label="ClosePopUp">
       </button>
-      <form class="form form_type_card pop-up__form" name="pop-up-form" novalidate>
+      <form class="form form_type_card pop-up__form" name="pop-up-form-card" novalidate>
         <h3 class="form__title">Новое место</h3>
         <label class="form__label">
           <input type="text" class="input form__input form__input_type_place" name="place" placeholder="Название"
@@ -89,7 +89,7 @@
     <div class="pop-up__overlay pop-up__overlay_type_delete">
       <button class="button button_type_close-img pop-up__close" type="button" aria-label="ClosePopUp">
       </button>
-      <form class="form form_type_delete pop-up__form" name="pop-up-form" novalidate>
+      <form class="form form_type_delete pop-up__form" name="pop-up-form-confirm" novalidate>
         <h3 class="form__title">Вы уверены?</h3>
         <button type="submit" class="button button_type_submit">Да</button>
       </form>
@@ -99,7 +99,7 @@
     <div class="pop-up__overlay pop-up__overlay_type_avatar">
       <button class="button button_type_close-img pop-up__close" type="button" aria-label="ClosePopUp">
       </button>
-      <form class="form form_type_avatar pop-up__form" name="pop-up-form" novalidate>
+      <form class="form form_type_avatar pop-up__form" name="pop-up-form-avatar" novalidate>
         <h3 class="form__title">Обновить аватар</h3>
         <label class="form__label">
           <input type="url" class="input form__input form__input_type_avatar" name="avatar" required id="avatar"
