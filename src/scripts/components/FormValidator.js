@@ -2,6 +2,9 @@ export default class FormValidator {
   constructor(config, formElement) {
     this._config = config;
     this._formElement = formElement;
+    this._inputlist = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
+    this._submitButton = this._formElement.querySelector(this._config.submitButtonSelector);
+    this._inputErrorList = Array.from(this._formElement.querySelectorAll(this._config.formErrorMessageSelector));
   }
 
   _showErrorMessage(inputElement) {
@@ -43,9 +46,8 @@ export default class FormValidator {
   }
 
   resetImputsErrorMessage() {
-    const errors = Array.from(this._formElement.querySelectorAll(this._config.formErrorMessageSelector));
     this._toggleButtonState();
-    errors.forEach(error => {
+    this._inputErrorList.forEach(error => {
       error.classList.remove(this._config.formErrorClass);
     });
     this._inputlist.forEach(input => {
@@ -54,8 +56,6 @@ export default class FormValidator {
   }
 
   _setEvenetListeners() {
-    this._inputlist = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
-    this._submitButton = this._formElement.querySelector(this._config.submitButtonSelector);
     this._toggleButtonState();
     this._inputlist.forEach(input => {
       input.addEventListener('input', () => {
