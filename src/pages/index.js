@@ -9,7 +9,13 @@ import { validationConfig, popUpProfileForm, popUpCardForm, elementsList, popUpP
 import '../pages/index.css';
 import PopupWithConfirmDelete from '../scripts/components/PopupWithConfirmDelete.js';
 
-export const api = new Api();
+export const api = new Api({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-50',
+  headers: {
+    authorization: 'aaaf8a01-66a7-402b-b4c7-63b2ef616c45',
+    'Content-Type': 'application/json'
+  }
+});
 
 const validatorEditProfileForm = new FormValidator(validationConfig, popUpProfileForm);
 
