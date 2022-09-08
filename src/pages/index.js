@@ -31,23 +31,47 @@ const createCard = (data, templateSelector, handleCardClick, handleConfirmCardDe
   return cardElement.generateCard();
 }
 
+const cardsContainer = new Section({
+  renderer: (item) => {
+    const card = createCard(item, '#template-card', handleCardClick, handleConfirmCardDelete, item._id, item.owner._id);
+    cardsContainer.addItem(card);
+  }
+}, elementsList);
+
 const getCards = () => {
   api.getInitCards()
     .then(res => {
-      const renderInitialCards = new Section({
-        items: res,
-        renderer: (item) => {
-          const card = createCard(item, '#template-card', handleCardClick, handleConfirmCardDelete, item._id, item.owner._id);
-          renderInitialCards.addItem(card);
-        }
-      }, elementsList);
-      renderInitialCards.renderItems();
+      cardsContainer.renderItems(res);
     })
     .catch(err => {
       console.log(err);
     });
 }
-getCards();
+
+const getUsersInfo = () => {
+  api.getUsersInfo()
+    .then(res => {
+      const { name, about, avatar } = res;
+      const dataUserName = {
+        name,
+        about,
+      }
+      profileValues.setUserInfo(dataUserName);
+
+      const dataUserAvatar = {
+        avatar,
+      }
+      profileValues.setUserAvatar(dataUserAvatar);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+const getInitialData = () => {
+  return Promise.all([getCards(), getUsersInfo()]);
+}
+getInitialData();
 
 /* PROFILE */
 
@@ -94,12 +118,13 @@ const addCardFormPopup = new PopupWithForm(popUpCard, {
       link,
     }
     api.postNewCard(data)
+      .then(res => {
+        const card = createCard(data, '#template-card', handleCardClick, handleConfirmCardDelete);
+        cardsContainer.addItem(card);
+      })
       .catch(err => {
         console.log(err);
       });
-    const card = createCard(data, '#template-card', handleCardClick, handleConfirmCardDelete);
-    elementsList.prepend(card);
-    getCards();
   }
 });
 addCardFormPopup.setEventListeners();
@@ -115,10 +140,15 @@ validatorAvatarForm.enableValidation();
 const avatarFormPopup = new PopupWithForm(popUpAvatar, {
   handleSubmit: ({ avatar }) => {
     api.patchAvatar(avatar)
+      .then(res => {
+        const data = {
+          avatar: res.avatar,
+        }
+        profileValues.setUserAvatar(data)
+      })
       .catch(err => {
         console.log(err);
       });
-    profileImg.src = avatar;
   }
 });
 avatarFormPopup.setEventListeners();
@@ -141,17 +171,6 @@ const deleteFormPopup = new PopupWithConfirmDelete(popUpDelete, {
   handleCardDelete: handleCardDelete
 });
 deleteFormPopup.setEventListeners();
-
-api.getUsersInfo()
-  .then(res => {
-    const { name, about, avatar } = res;
-    profileName.textContent = name;
-    profileActivity.textContent = about;
-    profileImg.src = avatar;
-  })
-  .catch(err => {
-    console.log(err);
-  });
 
 export const getQuantityLikes = () => {
   api.getQuantityLikes()

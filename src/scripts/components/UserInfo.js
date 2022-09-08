@@ -1,4 +1,4 @@
-import { profileName, profileActivity } from '../utils/constants.js';
+import { profileName, profileActivity, profileImg } from '../utils/constants.js';
 
 export default class UserInfo {
   constructor(data) {
@@ -15,5 +15,9 @@ export default class UserInfo {
   setUserInfo(formValues) {
     profileName.textContent = formValues.name;
     profileActivity.textContent = formValues.about;
+  }
+
+  setUserAvatar(formValues) {
+    profileImg.src = formValues.avatar;
   }
 }
