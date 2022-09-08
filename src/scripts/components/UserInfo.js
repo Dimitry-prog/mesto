@@ -4,7 +4,9 @@ export default class UserInfo {
   constructor(data) {
     this._name = data.name;
     this._about = data.about;
+    this._id = data.id;
   }
+
   getUserInfo() {
     return {
       name: this._name,
@@ -12,12 +14,20 @@ export default class UserInfo {
     }
   }
 
-  setUserInfo(formValues) {
-    profileName.textContent = formValues.name;
-    profileActivity.textContent = formValues.about;
+  setUserInfo(name, about) {
+    profileName.textContent = name;
+    profileActivity.textContent = about;
   }
 
-  setUserAvatar(formValues) {
-    profileImg.src = formValues.avatar;
+  setUserAvatar(avatar) {
+    profileImg.src = avatar;
+  }
+
+  setUserId(_id) {
+    this._myId = _id;
+  }
+
+  getMyId() {
+    return this._myId;
   }
 }

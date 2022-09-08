@@ -26,7 +26,8 @@ export const allPopUps = document.querySelectorAll('.pop-up');
 
 export const initialProfileInputsValue = {
   name: profileName,
-  about: profileActivity
+  about: profileActivity,
+  id: '',
 }
 
 export const popUpAvatar = document.querySelector('.pop-up_avatar');

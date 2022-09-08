@@ -48,34 +48,27 @@ const getCards = () => {
     });
 }
 
+const profileValues = new UserInfo(initialProfileInputsValue);
+
 const getUsersInfo = () => {
   api.getUsersInfo()
     .then(res => {
-      const { name, about, avatar } = res;
-      const dataUserName = {
-        name,
-        about,
-      }
-      profileValues.setUserInfo(dataUserName);
+      const { name, about, avatar, _id } = res;
 
-      const dataUserAvatar = {
-        avatar,
-      }
-      profileValues.setUserAvatar(dataUserAvatar);
+      profileValues.setUserInfo(name, about);
+      profileValues.setUserAvatar(avatar);
+      profileValues.setUserId(_id);
     })
     .catch(err => {
       console.log(err);
     });
 }
-
 const getInitialData = () => {
   return Promise.all([getCards(), getUsersInfo()]);
 }
 getInitialData();
 
 /* PROFILE */
-
-const profileValues = new UserInfo(initialProfileInputsValue);
 
 profileEditButton.addEventListener('click', function () {
   const { name, about } = profileValues.getUserInfo();
@@ -89,11 +82,9 @@ const profileFormPopup = new PopupWithForm(popUpProfile, {
   handleSubmit: (formValues) => {
     api.patchProfile(formValues)
       .then(res => {
-        const data = {
-          name: res.name,
-          about: res.about,
-        }
-        profileValues.setUserInfo(data);
+        const { name, about } = res;
+
+        profileValues.setUserInfo(name, about);
       })
       .catch(err => {
         console.log(err);
@@ -141,10 +132,9 @@ const avatarFormPopup = new PopupWithForm(popUpAvatar, {
   handleSubmit: ({ avatar }) => {
     api.patchAvatar(avatar)
       .then(res => {
-        const data = {
-          avatar: res.avatar,
-        }
-        profileValues.setUserAvatar(data)
+        const { avatar } = res;
+
+        profileValues.setUserAvatar(avatar);
       })
       .catch(err => {
         console.log(err);
