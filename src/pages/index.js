@@ -89,8 +89,8 @@ const profileFormPopup = new PopupWithForm(popUpProfile, {
     api.patchProfile(formValues)
       .then(res => {
         const { name, about } = res;
-
         profileValues.setUserInfo(name, about);
+        profileFormPopup.close();
       })
       .catch(err => {
         console.log(err);
@@ -118,6 +118,7 @@ const addCardFormPopup = new PopupWithForm(popUpCard, {
       .then(res => {
         const card = createCard(data, '#template-card', handleCardClick, handleConfirmCardDelete);
         cardsContainer.addItem(card);
+        addCardFormPopup.close();
       })
       .catch(err => {
         console.log(err);
@@ -139,8 +140,8 @@ const avatarFormPopup = new PopupWithForm(popUpAvatar, {
     api.patchAvatar(avatar)
       .then(res => {
         const { avatar } = res;
-
         profileValues.setUserAvatar(avatar);
+        addCardFormPopup.close();
       })
       .catch(err => {
         console.log(err);
