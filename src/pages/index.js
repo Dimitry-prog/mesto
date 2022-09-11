@@ -32,22 +32,40 @@ const handleConfirmCardDelete = () => {
   deleteFormPopup.open()
 }
 
-const createCard = (data, templateSelector, handleCardClick, handleConfirmCardDelete, cardId, ownerId) => {
-  const cardElement = new Card(data, templateSelector, handleCardClick, handleConfirmCardDelete, cardId, ownerId);
-  return cardElement.generateCard();
+const handlePutCardLike = (cardId) => {
+  api.putLikeCard(cardId)
+    .then(res => {
+      handleQuantityCardLikes();
+    })
+    .catch(err => {
+      console.log(err);
+    });
 }
 
-const cardsContainer = new Section({
-  renderer: (item) => {
-    const card = createCard(item, '#template-card', handleCardClick, handleConfirmCardDelete, item._id, item.owner._id);
-    cardsContainer.addItem(card);
-  }
-}, elementsList);
-
-const getCards = () => {
-  api.getInitCards()
+const handleRemoveCardLike = (cardId) => {
+  api.removeLikeCard(cardId)
     .then(res => {
-      cardsContainer.renderItems(res);
+      handleQuantityCardLikes();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+const handleQuantityCardLikes = (methodQuantityLike, methodAddLike) => {
+  api.getQuantityLikes()
+    .then(res => {
+      const cardLikesArr = res.map(elem => elem.likes);
+
+      cardLikesArr.forEach(elem => {
+        methodQuantityLike;
+
+        elem.forEach(item => {
+          if (item._id === getId()) {
+            methodAddLike;
+          }
+        });
+      });
     })
     .catch(err => {
       console.log(err);
@@ -56,6 +74,34 @@ const getCards = () => {
 
 const profileValues = new UserInfo(initialProfileInputsValue);
 
+const getId = () => {
+  return profileValues.getMyId();
+}
+
+const createCard = (...arg) => {
+  const cardElement = new Card(...arg);
+  return cardElement.generateCard();
+}
+
+const cardsContainer = new Section({
+  renderer: (item) => {
+    const card = createCard(item, '#template-card', handleCardClick, handleConfirmCardDelete, getId, item.owner._id, item._id, handlePutCardLike, handleRemoveCardLike, handleQuantityCardLikes, item.likes);
+    cardsContainer.addItem(card);
+  }
+}, elementsList);
+
+const getCards = () => {
+  api.getInitCards()
+    .then(res => {
+      console.log(res);
+      cardsContainer.renderItems(res);
+      handleQuantityCardLikes()
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
 const getUsersInfo = () => {
   api.getUsersInfo()
     .then(res => {
@@ -63,14 +109,15 @@ const getUsersInfo = () => {
 
       profileValues.setUserInfo(name, about);
       profileValues.setUserAvatar(avatar);
-      profileValues.setUserId(_id);
+      profileValues.setMyId(_id);
     })
     .catch(err => {
       console.log(err);
     });
 }
+
 const getInitialData = () => {
-  return Promise.all([getCards(), getUsersInfo()]);
+  Promise.all([getCards(), getUsersInfo()]);
 }
 getInitialData();
 
@@ -116,7 +163,7 @@ const addCardFormPopup = new PopupWithForm(popUpCard, {
     }
     api.postNewCard(data)
       .then(res => {
-        const card = createCard(data, '#template-card', handleCardClick, handleConfirmCardDelete);
+        const card = createCard(data, '#template-card', handleCardClick, handleConfirmCardDelete, getId);
         cardsContainer.addItem(card);
         addCardFormPopup.close();
       })
@@ -141,7 +188,7 @@ const avatarFormPopup = new PopupWithForm(popUpAvatar, {
       .then(res => {
         const { avatar } = res;
         profileValues.setUserAvatar(avatar);
-        addCardFormPopup.close();
+        avatarFormPopup.close();
       })
       .catch(err => {
         console.log(err);
@@ -159,6 +206,9 @@ avatarEditButton.addEventListener('click', () => {
 
 export const handleCardDelete = (id) => {
   api.deleteCard(id)
+    .then(res => {
+
+    })
     .catch(err => {
       console.log(err);
     });
@@ -169,28 +219,6 @@ const deleteFormPopup = new PopupWithConfirmDelete(popUpDelete, {
 });
 deleteFormPopup.setEventListeners();
 
-export const getQuantityLikes = () => {
-  api.getQuantityLikes()
-    .then(res => {
-      console.log(res);
-      const cardQuantityLikes = document.querySelectorAll('.card__quantity');
-      const buttonLikes = document.querySelectorAll('.card__like');
-      const cardLikes = res.map(elem => elem.likes);
 
-      cardLikes.forEach((elem, index) => {
-        cardQuantityLikes[index].textContent = elem.length;
-
-        elem.forEach(item => {
-          if (item._id === myId) {
-            buttonLikes[index].classList.add('card__like_active');
-          }
-        });
-      });
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
-getQuantityLikes();
 
 

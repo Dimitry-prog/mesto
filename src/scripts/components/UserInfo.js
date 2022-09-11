@@ -23,8 +23,8 @@ export default class UserInfo {
     profileImg.src = avatar;
   }
 
-  setUserId(_id) {
-    this._myId = _id;
+  setMyId(id) {
+    this._myId = id;
   }
 
   getMyId() {

@@ -1,8 +1,8 @@
-import { api, getQuantityLikes, handleCardDelete } from "../../pages";
-import { myId } from "../utils/constants";
+import { handleCardDelete } from "../../pages";
+
 
 export default class Card {
-  constructor(data, templateSelector, handleCardClick, handleConfirmCardDelete, cardId, ownerId) {
+  constructor(data, templateSelector, handleCardClick, handleConfirmCardDelete, getId, ownerId, cardId, handlePutCardLike, handleRemoveCardLike, handleQuantityCardLikes, likesArr) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
@@ -10,6 +10,11 @@ export default class Card {
     this._handleConfirmCardDelete = handleConfirmCardDelete;
     this._cardId = cardId;
     this._ownerId = ownerId;
+    this._handlePutCardLike = handlePutCardLike;
+    this._handleRemoveCardLike = handleRemoveCardLike;
+    this._handleQuantityCardLikes = handleQuantityCardLikes;
+    this._getId = getId;
+    this._likesArr = likesArr;
   }
 
   _getTemplateCardElement() {
@@ -26,39 +31,31 @@ export default class Card {
     this._element.remove()
   }
 
-  _cardAddLike() {
+  cardAddLike() {
     this._likeButton.classList.add('card__like_active');
   }
-  _cardDeleteLike() {
+
+  cardDeleteLike() {
     this._likeButton.classList.remove('card__like_active');
+  }
+
+  showQuantityCardLikes() {
+    this._quantityCardLike.textContent = this._likesArr.length;
   }
 
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {
       if (!this._likeButton.classList.contains('card__like_active')) {
-        api.putLikeCard(this._cardId)
-          .then(res => {
-            getQuantityLikes();
-          })
-          .catch(err => {
-            console.log(err);
-          });
-        this._cardAddLike();
+        this._handlePutCardLike(this._cardId, this.cardAddLike());
+        this._handleQuantityCardLikes(this.showQuantityCardLikes(), this.cardAddLike());
       } else {
-        api.removeLikeCard(this._cardId)
-          .then(res => {
-            getQuantityLikes();
-          })
-          .catch(err => {
-            console.log(err);
-          });
-        this._cardDeleteLike();
+        this._handleRemoveCardLike(this._cardId, this.cardDeleteLike());
+        this._handleQuantityCardLikes(this.showQuantityCardLikes(), this.cardDeleteLike());
       }
     });
 
     this._cardDeleteButton.addEventListener('click', () => {
       this._handleConfirmCardDelete();
-      //this._handleDeleteCard();
       handleCardDelete(this._cardId);
     });
 
@@ -73,9 +70,12 @@ export default class Card {
     this._likeButton = this._element.querySelector('.card__like');
 
     this._cardDeleteButton = this._element.querySelector('.card__delete');
-    if (this._ownerId !== myId) {
+
+    if (this._ownerId !== this._getId()) {
       this._cardDeleteButton.remove()
     }
+
+    this._quantityCardLike = this._element.querySelector('.card__quantity');
 
     this._cardImg = this._element.querySelector('.card__img');
     this._cardImg.src = this._link;
