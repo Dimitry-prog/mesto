@@ -37,4 +37,4 @@ export const profileImg = document.querySelector('.profile__img');
 export const popUpDelete = document.querySelector('.pop-up_delete');
 export const popUpDeleteForm = popUpDelete.querySelector('.form_type_delete');
 export const cardQuantityLikes = document.querySelector('.card__quantity');
-export const myId = "4cb2a29ee40cf94581bd9fb2";
+
