@@ -35,7 +35,7 @@ const handleConfirmCardDelete = () => {
 const handlePutCardLike = (cardId) => {
   api.putLikeCard(cardId)
     .then(res => {
-      handleQuantityCardLikes();
+
     })
     .catch(err => {
       console.log(err);
@@ -45,27 +45,7 @@ const handlePutCardLike = (cardId) => {
 const handleRemoveCardLike = (cardId) => {
   api.removeLikeCard(cardId)
     .then(res => {
-      handleQuantityCardLikes();
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
 
-const handleQuantityCardLikes = (methodQuantityLike, methodAddLike) => {
-  api.getQuantityLikes()
-    .then(res => {
-      const cardLikesArr = res.map(elem => elem.likes);
-
-      cardLikesArr.forEach(elem => {
-        methodQuantityLike;
-
-        elem.forEach(item => {
-          if (item._id === getId()) {
-            methodAddLike;
-          }
-        });
-      });
     })
     .catch(err => {
       console.log(err);
@@ -85,7 +65,7 @@ const createCard = (...arg) => {
 
 const cardsContainer = new Section({
   renderer: (item) => {
-    const card = createCard(item, '#template-card', handleCardClick, handleConfirmCardDelete, getId, item.owner._id, item._id, handlePutCardLike, handleRemoveCardLike, handleQuantityCardLikes, item.likes);
+    const card = createCard(item, '#template-card', handleCardClick, handleConfirmCardDelete, getId, item.owner._id, item._id, handlePutCardLike, handleRemoveCardLike, item.likes);
     cardsContainer.addItem(card);
   }
 }, elementsList);
@@ -95,7 +75,7 @@ const getCards = () => {
     .then(res => {
       console.log(res);
       cardsContainer.renderItems(res);
-      handleQuantityCardLikes()
+
     })
     .catch(err => {
       console.log(err);

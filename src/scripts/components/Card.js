@@ -2,7 +2,7 @@ import { handleCardDelete } from "../../pages";
 
 
 export default class Card {
-  constructor(data, templateSelector, handleCardClick, handleConfirmCardDelete, getId, ownerId, cardId, handlePutCardLike, handleRemoveCardLike, handleQuantityCardLikes, likesArr) {
+  constructor(data, templateSelector, handleCardClick, handleConfirmCardDelete, getId, ownerId, cardId, handlePutCardLike, handleRemoveCardLike, likesArr) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
@@ -12,7 +12,6 @@ export default class Card {
     this._ownerId = ownerId;
     this._handlePutCardLike = handlePutCardLike;
     this._handleRemoveCardLike = handleRemoveCardLike;
-    this._handleQuantityCardLikes = handleQuantityCardLikes;
     this._getId = getId;
     this._likesArr = likesArr;
   }
@@ -39,18 +38,14 @@ export default class Card {
     this._likeButton.classList.remove('card__like_active');
   }
 
-  showQuantityCardLikes() {
-    this._quantityCardLike.textContent = this._likesArr.length;
-  }
-
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {
       if (!this._likeButton.classList.contains('card__like_active')) {
         this._handlePutCardLike(this._cardId, this.cardAddLike());
-        this._handleQuantityCardLikes(this.showQuantityCardLikes(), this.cardAddLike());
+        this._quantityCardLike.textContent = Number(this._quantityCardLike.textContent) + 1;
       } else {
         this._handleRemoveCardLike(this._cardId, this.cardDeleteLike());
-        this._handleQuantityCardLikes(this.showQuantityCardLikes(), this.cardDeleteLike());
+        this._quantityCardLike.textContent = Number(this._quantityCardLike.textContent) - 1;
       }
     });
 
@@ -68,14 +63,19 @@ export default class Card {
     this._element = this._getTemplateCardElement();
 
     this._likeButton = this._element.querySelector('.card__like');
+    this._likesArr.forEach(item => {
+      if (item._id === this._getId()) {
+        this.cardAddLike();
+      }
+    });
 
     this._cardDeleteButton = this._element.querySelector('.card__delete');
-
     if (this._ownerId !== this._getId()) {
       this._cardDeleteButton.remove()
     }
 
     this._quantityCardLike = this._element.querySelector('.card__quantity');
+    this._quantityCardLike.textContent = this._likesArr.length;
 
     this._cardImg = this._element.querySelector('.card__img');
     this._cardImg.src = this._link;
