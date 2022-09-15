@@ -24,49 +24,45 @@ const validatorAddCardForm = new FormValidator(validationConfig, popUpCardForm);
 const imgPopup = new PopupWithImage(popUpImg);
 imgPopup.setEventListeners();
 
-const handleCardClick = (name, link) => {
-  imgPopup.open(name, link);
-}
-
-const handleConfirmCardDelete = () => {
-  deleteFormPopup.open()
-}
-
-const handlePutCardLike = (cardId) => {
-  api.putLikeCard(cardId)
-    .then(res => {
-
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
-
-const handleRemoveCardLike = (cardId) => {
-  api.removeLikeCard(cardId)
-    .then(res => {
-
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
-
 const profileValues = new UserInfo(initialProfileInputsValue);
 
-const getId = () => {
-  return profileValues.getMyId();
-}
+const createCard = (cardData) => {
+  const cardElement = new Card({
+    data: { ...cardData, myId: profileValues.getMyId() },
 
-const createCard = (...arg) => {
-  const cardElement = new Card(...arg);
+    handleCardClick: () => {
+      imgPopup.open(data.name, data.link);
+    },
+    handleConfirmCardDelete: () => {
+      deleteFormPopup.open();
+    },
+    handlePutCardLike: () => {
+      api.putLikeCard(cardElement.getCardId())
+        .then(res => {
+          cardElement.cardAddLike();
+          cardElement.showQuantityCardLikes(res.likes.length);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    handleRemoveCardLike: () => {
+      api.removeLikeCard(cardElement.getCardId())
+        .then(res => {
+          cardElement.cardDeleteLike();
+          cardElement.showQuantityCardLikes(res.likes.length);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }, '#template-card');
   return cardElement.generateCard();
 }
 
 const cardsContainer = new Section({
   renderer: (item) => {
-    const card = createCard(item, '#template-card', handleCardClick, handleConfirmCardDelete, getId, item.owner._id, item._id, handlePutCardLike, handleRemoveCardLike, item.likes);
-    cardsContainer.addItem(card);
+    cardsContainer.addItem(createCard(item));
   }
 }, elementsList);
 
@@ -75,7 +71,6 @@ const getCards = () => {
     .then(res => {
       console.log(res);
       cardsContainer.renderItems(res);
-
     })
     .catch(err => {
       console.log(err);
@@ -97,7 +92,10 @@ const getUsersInfo = () => {
 }
 
 const getInitialData = () => {
-  Promise.all([getCards(), getUsersInfo()]);
+  Promise.all([getCards(), getUsersInfo()])
+    .catch(err => {
+      console.log(err);
+    });
 }
 getInitialData();
 
@@ -141,10 +139,10 @@ const addCardFormPopup = new PopupWithForm(popUpCard, {
       name: place,
       link,
     }
+
     api.postNewCard(data)
       .then(res => {
-        const card = createCard(data, '#template-card', handleCardClick, handleConfirmCardDelete, getId);
-        cardsContainer.addItem(card);
+        cardsContainer.addItemAtTheBeginning(createCard(res));
         addCardFormPopup.close();
       })
       .catch(err => {
