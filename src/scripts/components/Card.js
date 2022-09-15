@@ -1,5 +1,3 @@
-import { handleCardDelete } from "../../pages";
-
 export default class Card {
   constructor({ data, handleCardClick, handleConfirmCardDelete, handlePutCardLike, handleRemoveCardLike }, templateSelector) {
     this._name = data.name;
@@ -25,7 +23,7 @@ export default class Card {
     return cardElement;
   }
 
-  handleDeleteCard() {
+  removeCard() {
     this._element.remove()
   }
 
@@ -56,7 +54,6 @@ export default class Card {
 
     this._cardDeleteButton.addEventListener('click', () => {
       this._handleConfirmCardDelete();
-      handleCardDelete(this._cardId);
     });
 
     this._cardImg.addEventListener('click', () => {

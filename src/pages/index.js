@@ -35,6 +35,16 @@ const createCard = (cardData) => {
     },
     handleConfirmCardDelete: () => {
       deleteFormPopup.open();
+      deleteFormPopup.setSubmitActive(() => {
+        api.deleteCard(cardElement.getCardId())
+          .then(res => {
+            cardElement.removeCard();
+            deleteFormPopup.close();
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      });
     },
     handlePutCardLike: () => {
       api.putLikeCard(cardElement.getCardId())
@@ -182,19 +192,7 @@ avatarEditButton.addEventListener('click', () => {
 
 /* CARD DELETE */
 
-export const handleCardDelete = (id) => {
-  api.deleteCard(id)
-    .then(res => {
-
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
-
-const deleteFormPopup = new PopupWithConfirmDelete(popUpDelete, {
-  handleCardDelete: handleCardDelete
-});
+const deleteFormPopup = new PopupWithConfirmDelete(popUpDelete);
 deleteFormPopup.setEventListeners();
 
 
