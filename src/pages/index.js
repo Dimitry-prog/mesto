@@ -5,7 +5,7 @@ import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import Api from '../scripts/components/Api.js';
-import { validationConfig, popUpProfileForm, popUpCardForm, elementsList, popUpProfile, initialProfileInputsValue, profileEditButton, popUpCard, cardAddButton, popUpImg, nameInput, activityInput, avatarEditButton, popUpAvatar, popUpAvatarForm, popUpDelete, } from '../scripts/utils/constants.js';
+import { validationConfig, popUpProfileForm, popUpCardForm, elementsList, popUpProfile, initialProfileInputsValue, profileEditButton, popUpCard, cardAddButton, popUpImg, nameInput, activityInput, avatarEditButton, popUpAvatar, popUpAvatarForm, popUpDelete, mainContent, loaderContent } from '../scripts/utils/constants.js';
 import '../pages/index.css';
 import PopupWithConfirmDelete from '../scripts/components/PopupWithConfirmDelete.js';
 
@@ -16,6 +16,16 @@ export const api = new Api({
     'Content-Type': 'application/json'
   }
 });
+
+const renderLoader = (isLoading) => {
+  if (isLoading) {
+    mainContent.classList.add('content_hidden');
+    loaderContent.classList.add('loader__content_visible');
+  } else {
+    mainContent.classList.remove('content_hidden');
+    loaderContent.classList.remove('loader__content_visible');
+  }
+}
 
 const validatorEditProfileForm = new FormValidator(validationConfig, popUpProfileForm);
 
@@ -29,13 +39,13 @@ const profileValues = new UserInfo(initialProfileInputsValue);
 const createCard = (cardData) => {
   const cardElement = new Card({
     data: { ...cardData, myId: profileValues.getMyId() },
-
     handleCardClick: () => {
       imgPopup.open(data.name, data.link);
     },
     handleConfirmCardDelete: () => {
       deleteFormPopup.open();
       deleteFormPopup.setSubmitActive(() => {
+        deleteFormPopup.defaultSubmitButtonText(true)
         api.deleteCard(cardElement.getCardId())
           .then(res => {
             cardElement.removeCard();
@@ -43,7 +53,8 @@ const createCard = (cardData) => {
           })
           .catch(err => {
             console.log(err);
-          });
+          })
+          .finally(() => deleteFormPopup.defaultSubmitButtonText(false));
       });
     },
     handlePutCardLike: () => {
@@ -76,39 +87,6 @@ const cardsContainer = new Section({
   }
 }, elementsList);
 
-const getCards = () => {
-  api.getInitCards()
-    .then(res => {
-      console.log(res);
-      cardsContainer.renderItems(res);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
-
-const getUsersInfo = () => {
-  api.getUsersInfo()
-    .then(res => {
-      const { name, about, avatar, _id } = res;
-
-      profileValues.setUserInfo(name, about);
-      profileValues.setUserAvatar(avatar);
-      profileValues.setMyId(_id);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
-
-const getInitialData = () => {
-  Promise.all([getCards(), getUsersInfo()])
-    .catch(err => {
-      console.log(err);
-    });
-}
-getInitialData();
-
 /* PROFILE */
 
 profileEditButton.addEventListener('click', function () {
@@ -121,6 +99,8 @@ profileEditButton.addEventListener('click', function () {
 
 const profileFormPopup = new PopupWithForm(popUpProfile, {
   handleSubmit: (formValues) => {
+    profileFormPopup.defaultSubmitButtonText(true)
+
     api.patchProfile(formValues)
       .then(res => {
         const { name, about } = res;
@@ -129,7 +109,8 @@ const profileFormPopup = new PopupWithForm(popUpProfile, {
       })
       .catch(err => {
         console.log(err);
-      });
+      })
+      .finally(() => profileFormPopup.defaultSubmitButtonText(false));
   }
 });
 profileFormPopup.setEventListeners();
@@ -144,6 +125,8 @@ cardAddButton.addEventListener('click', function () {
 
 const addCardFormPopup = new PopupWithForm(popUpCard, {
   handleSubmit: (values) => {
+    addCardFormPopup.defaultSubmitButtonText(true)
+
     const { place, link } = values;
     const data = {
       name: place,
@@ -157,7 +140,8 @@ const addCardFormPopup = new PopupWithForm(popUpCard, {
       })
       .catch(err => {
         console.log(err);
-      });
+      })
+      .finally(() => addCardFormPopup.defaultSubmitButtonText(false));
   }
 });
 addCardFormPopup.setEventListeners();
@@ -172,6 +156,7 @@ validatorAvatarForm.enableValidation();
 
 const avatarFormPopup = new PopupWithForm(popUpAvatar, {
   handleSubmit: ({ avatar }) => {
+    avatarFormPopup.defaultSubmitButtonText(true);
     api.patchAvatar(avatar)
       .then(res => {
         const { avatar } = res;
@@ -180,7 +165,8 @@ const avatarFormPopup = new PopupWithForm(popUpAvatar, {
       })
       .catch(err => {
         console.log(err);
-      });
+      })
+      .finally(() => avatarFormPopup.defaultSubmitButtonText(false));
   }
 });
 avatarFormPopup.setEventListeners();
@@ -195,6 +181,21 @@ avatarEditButton.addEventListener('click', () => {
 const deleteFormPopup = new PopupWithConfirmDelete(popUpDelete);
 deleteFormPopup.setEventListeners();
 
+/* INIT RENDER */
 
+renderLoader(true)
+api.getInitialAppState()
+  .then(res => {
+    const [userInfo, initCards] = res;
 
+    const { name, about, avatar, _id } = userInfo;
+    profileValues.setUserInfo(name, about);
+    profileValues.setUserAvatar(avatar);
+    profileValues.setMyId(_id);
 
+    cardsContainer.renderItems(initCards);
+  })
+  .catch(err => {
+    console.log(err);
+  })
+  .finally(() => renderLoader(false));

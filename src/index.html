@@ -13,24 +13,29 @@
     <img src="<%=require('./images/logo.svg')%>" alt="логотип мисто" class="logo header__logo">
   </header>
   <main class="main page__main">
-    <section class="profile main__profile">
-      <div class="profile__avatar">
-        <img src="<%=require('./images/profile__img.jpg')%>" alt="Жак-Ив Кусто" class="profile__img">
-        <button class="button  button_type_avatar" type="button" aria-label="editAvatar">
+    <div class="loader">
+      <div class="loader__content"></div>
+    </div>
+    <div class="content">
+      <section class="profile main__profile">
+        <div class="profile__avatar">
+          <img src="<%=require('./images/profile__img.jpg')%>" alt="Жак-Ив Кусто" class="profile__img">
+          <button class="button  button_type_avatar" type="button" aria-label="editAvatar">
+          </button>
+        </div>
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="button profile__edit button_type_edit" type="button" aria-label="EditProfile">
+          </button>
+          <p class="profile__activity">Исследователь океана</p>
+        </div>
+        <button class="button button_type_add profile__add" type="button" aria-label="AddNewCard">
         </button>
-      </div>
-      <div class="profile__info">
-        <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <button class="button profile__edit button_type_edit" type="button" aria-label="EditProfile">
-        </button>
-        <p class="profile__activity">Исследователь океана</p>
-      </div>
-      <button class="button button_type_add profile__add" type="button" aria-label="AddNewCard">
-      </button>
-    </section>
-    <section class="elements main__elements">
-      <ul class="elements__list"></ul>
-    </section>
+      </section>
+      <section class="elements main__elements">
+        <ul class="elements__list"></ul>
+      </section>
+    </div>
   </main>
   <footer class="footer page__footer">
     <p class="footer__copyright">&copy; 2022 Dimitry</p>

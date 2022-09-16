@@ -38,3 +38,5 @@ export const popUpDelete = document.querySelector('.pop-up_delete');
 export const popUpDeleteForm = popUpDelete.querySelector('.form_type_delete');
 export const cardQuantityLikes = document.querySelector('.card__quantity');
 
+export const mainContent = document.querySelector('.content');
+export const loaderContent = document.querySelector('.loader__content');

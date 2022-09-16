@@ -29,6 +29,10 @@ export default class Api {
       });
   }
 
+  getInitialAppState() {
+    return Promise.all([this.getUsersInfo(), this.getInitCards()])
+  }
+
   patchProfile(data) {
     return fetch(this.url + '/users/me', {
       method: 'PATCH',
@@ -51,15 +55,6 @@ export default class Api {
         name: data.name,
         link: data.link
       }),
-    })
-      .then(res => {
-        return this._getResponseData(res);
-      });
-  }
-
-  getQuantityLikes() {
-    return fetch(this.url + '/cards', {
-      headers: this._headers
     })
       .then(res => {
         return this._getResponseData(res);

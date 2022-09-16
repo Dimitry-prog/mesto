@@ -20,6 +20,11 @@
 @import url(../blocks/main/__profile/main__profile.css);
 @import url(../blocks/main/__elements/main__elements.css);
 
+/**** CONTENT ****/
+
+@import url(../blocks/content/content.css);
+@import url(../blocks/content/content_hidden.css);
+
 /**** HEADER ****/
 
 @import url(../blocks/header/header.css);
@@ -106,3 +111,9 @@
 @import url(../blocks/form/__label/form__label.css);
 @import url(../blocks/form/__error-message/form__error-message.css);
 @import url(../blocks/form/__error-message/form__error-message_active.css);
+
+/**** LOADER ****/
+
+@import url(../blocks/loader/loader.css);
+@import url(../blocks/loader/__content.css/loader__content.css);
+@import url(../blocks/loader/__content.css/loader__content_visible.css);
