@@ -1,7 +1,0 @@
-.page__main {}
-
-@media screen and (max-width: 487px) {
-  .page__main {
-    padding: 0 20px;
-  }
-}
